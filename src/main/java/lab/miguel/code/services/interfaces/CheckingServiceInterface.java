@@ -5,6 +5,6 @@ import lab.miguel.code.entity.Checking;
 
 public interface CheckingServiceInterface {
 
-    Account createChecking(Checking checking);
+    Checking createChecking(Checking checking);
 
 }

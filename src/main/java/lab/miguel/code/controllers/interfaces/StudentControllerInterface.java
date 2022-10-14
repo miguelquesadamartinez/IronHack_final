@@ -1,4 +1,9 @@
 package lab.miguel.code.controllers.interfaces;
 
-public class StudentControllerInterface {
+import lab.miguel.code.entity.Account;
+import lab.miguel.code.entity.StudentChecking;
+
+public interface StudentControllerInterface {
+
+    StudentChecking createStudent(StudentChecking studentChecking);
 }
