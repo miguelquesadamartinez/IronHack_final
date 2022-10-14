@@ -1,5 +1,7 @@
 package lab.miguel.code.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 
@@ -13,7 +15,9 @@ public class AccountHolders {
     private String name;
     private LocalDate dateOFBirth;
 
+    @JsonIgnore
     private Address primaryAddress;
+    @JsonIgnore
     private Address mailingAddress;
 
     public Long getId() {

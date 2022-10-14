@@ -13,13 +13,33 @@ public abstract class Account {
     private Long id;
 
     private double balance;
+    @ManyToOne
+    @JoinColumn(name = "primary_owner_id")
     private AccountHolders PrimaryOwner;
+    @ManyToOne
+    @JoinColumn(name = "secondary_owner_id")
     private AccountHolders SecondaryOwner;
     private double penaltyFee;
     private LocalDate creationDate;
     private Status status;
 
     private String secretKey;
+
+    public AccountHolders getSecondaryOwner() {
+        return SecondaryOwner;
+    }
+
+    public void setSecondaryOwner(AccountHolders SecondaryOwner) {
+        this.SecondaryOwner = SecondaryOwner;
+    }
+
+    public AccountHolders getPrimaryOwner() {
+        return PrimaryOwner;
+    }
+
+    public void setPrimaryOwner(AccountHolders PrimaryOwner) {
+        this.PrimaryOwner = PrimaryOwner;
+    }
 
 
     public Long getId() {
