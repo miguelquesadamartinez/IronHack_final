@@ -52,4 +52,13 @@ public abstract class Account {
             return false;
     }
 
+    public Account(double balance, AccountHolders primaryOwner, AccountHolders secondaryOwner, LocalDate creationDate, Status status, String secretKey, LocalDate dateLastAction) {
+        this.balance = balance;
+        PrimaryOwner = primaryOwner;
+        SecondaryOwner = secondaryOwner;
+        this.creationDate = creationDate;
+        this.status = status;
+        this.secretKey = secretKey;
+        this.dateLastAction = dateLastAction;
+    }
 }

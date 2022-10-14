@@ -22,8 +22,8 @@ public class CreditCard extends Account {
         this.interestRate = 0.2;
     }
 
-    public CreditCard(Long id, double balance, AccountHolders primaryOwner, AccountHolders secondaryOwner, double penaltyFee, LocalDate creationDate, Status status, String secretKey, double creditLimit, double interestRate) {
-        super(id, balance, primaryOwner, secondaryOwner, penaltyFee, creationDate, status, secretKey);
+    public CreditCard(double balance, AccountHolders primaryOwner, AccountHolders secondaryOwner, LocalDate creationDate, Status status, String secretKey, LocalDate dateLastAction, double creditLimit, double interestRate) {
+        super(balance, primaryOwner, secondaryOwner, creationDate, status, secretKey, dateLastAction);
         if (interestRate <= 0.2 && interestRate > 0.1 ) {
             this.interestRate = interestRate;
         } else if (interestRate < 0.1 || interestRate > 0.2) {

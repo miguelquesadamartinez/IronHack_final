@@ -27,9 +27,8 @@ public class Savings extends Account {
         this.minimumBalance = MIN_BALANCE;
     }
 
-    // TODO: Llevar esto a setter
-    public Savings(Long id, double balance, AccountHolders primaryOwner, AccountHolders secondaryOwner, double penaltyFee, LocalDate creationDate, Status status, String secretKey, double interestRate, double minimumBalance) {
-        super(id, balance, primaryOwner, secondaryOwner, penaltyFee, creationDate, status, secretKey);
+    public Savings(double balance, AccountHolders primaryOwner, AccountHolders secondaryOwner, LocalDate creationDate, Status status, String secretKey, LocalDate dateLastAction, double interestRate, double minimumBalance) {
+        super(balance, primaryOwner, secondaryOwner, creationDate, status, secretKey, dateLastAction);
         if (interestRate <= DEFAULT_INTEREST ) {
             this.interestRate = interestRate;
         } else {
