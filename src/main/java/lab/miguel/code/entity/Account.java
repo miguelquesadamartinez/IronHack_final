@@ -25,6 +25,60 @@ public abstract class Account {
 
     private String secretKey;
 
+    public Account() {
+    }
+
+    public Account(Long id, double balance, AccountHolders primaryOwner, AccountHolders secondaryOwner, double penaltyFee, LocalDate creationDate, Status status, String secretKey) {
+        this.id = id;
+        this.balance = balance;
+        PrimaryOwner = primaryOwner;
+        SecondaryOwner = secondaryOwner;
+        this.penaltyFee = penaltyFee;
+        this.creationDate = creationDate;
+        this.status = status;
+        this.secretKey = secretKey;
+    }
+
+    public double getBalance() {
+        return balance;
+    }
+
+    public void setBalance(double balance) {
+        this.balance = balance;
+    }
+
+    public double getPenaltyFee() {
+        return penaltyFee;
+    }
+
+    public void setPenaltyFee(double penaltyFee) {
+        this.penaltyFee = penaltyFee;
+    }
+
+    public LocalDate getCreationDate() {
+        return creationDate;
+    }
+
+    public void setCreationDate(LocalDate creationDate) {
+        this.creationDate = creationDate;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
+    public String getSecretKey() {
+        return secretKey;
+    }
+
+    public void setSecretKey(String secretKey) {
+        this.secretKey = secretKey;
+    }
+
     public AccountHolders getSecondaryOwner() {
         return SecondaryOwner;
     }
