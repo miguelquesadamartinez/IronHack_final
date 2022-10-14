@@ -18,8 +18,8 @@ public class CreditCard extends Account {
         this.interestRate = 0.2;
     }
 
-    public CreditCard(double creditLimit, double interestRate) {
-
+    public CreditCard(Long id, double balance, AccountHolders primaryOwner, AccountHolders secondaryOwner, double penaltyFee, LocalDate creationDate, Status status, String secretKey, double creditLimit, double interestRate) {
+        super(id, balance, primaryOwner, secondaryOwner, penaltyFee, creationDate, status, secretKey);
         if (interestRate <= 0.2 && interestRate > 0.1 ) {
             this.interestRate = interestRate;
         } else if (interestRate < 0.1 || interestRate > 0.2) {
@@ -30,8 +30,7 @@ public class CreditCard extends Account {
             this.creditLimit = creditLimit;
         } else {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
-        }
-
+        };
     }
 
     public double getCreditLimit() {

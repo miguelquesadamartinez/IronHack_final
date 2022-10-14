@@ -1,9 +1,11 @@
 package lab.miguel.code.entity;
 
+import lab.miguel.code.enums.Status;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;
 
 import javax.persistence.Entity;
+import java.time.LocalDate;
 
 @Entity
 public class Savings extends Account {
@@ -21,8 +23,8 @@ public class Savings extends Account {
         this.minimumBalance = MIN_BALANCE;
     }
 
-    public Savings(double interestRate, double minimumBalance) {
-
+    public Savings(Long id, double balance, AccountHolders primaryOwner, AccountHolders secondaryOwner, double penaltyFee, LocalDate creationDate, Status status, String secretKey, double interestRate, double minimumBalance) {
+        super(id, balance, primaryOwner, secondaryOwner, penaltyFee, creationDate, status, secretKey);
         if (interestRate <= DEFAULT_INTEREST ) {
             this.interestRate = interestRate;
         } else {
