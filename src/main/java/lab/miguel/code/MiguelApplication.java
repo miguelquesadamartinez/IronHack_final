@@ -10,4 +10,6 @@ public class MiguelApplication {
 		SpringApplication.run(MiguelApplication.class, args);
 	}
 
+
+
 }
