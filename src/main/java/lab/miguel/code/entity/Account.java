@@ -3,9 +3,11 @@ package lab.miguel.code.entity;
 import lab.miguel.code.enums.Status;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 @Entity
 @Getter
@@ -25,24 +27,29 @@ public abstract class Account {
     @ManyToOne
     @JoinColumn(name = "secondary_owner_id")
     private AccountHolders SecondaryOwner;
-    private double penaltyFee;
+
+    //private double penaltyFee;
+
     private LocalDate creationDate;
     private Status status;
 
     private String secretKey;
 
+    private LocalDate dateLastAction;
+
     public Account() {
     }
 
-    public Account(Long id, double balance, AccountHolders primaryOwner, AccountHolders secondaryOwner, double penaltyFee, LocalDate creationDate, Status status, String secretKey) {
-        this.id = id;
-        this.balance = balance;
-        PrimaryOwner = primaryOwner;
-        SecondaryOwner = secondaryOwner;
-        this.penaltyFee = penaltyFee;
-        this.creationDate = creationDate;
-        this.status = status;
-        this.secretKey = secretKey;
+    // TODO: Falta constructor
+
+    public static boolean makeAyear(){
+        LocalDate currentDate = LocalDate.now();
+        LocalDate pastDate = currentDate.minusYears(1);
+
+        if (currentDate.isEqual(pastDate))
+            return true;
+        else
+            return false;
     }
 
 }
