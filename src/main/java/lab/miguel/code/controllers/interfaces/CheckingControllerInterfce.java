@@ -1,9 +1,10 @@
 package lab.miguel.code.controllers.interfaces;
 
 import lab.miguel.code.entity.Account;
+import lab.miguel.code.entity.Checking;
 
 public interface CheckingControllerInterfce {
 
-    Account createChecking(Account account);
+    Checking createChecking(Checking checking);
 
 }

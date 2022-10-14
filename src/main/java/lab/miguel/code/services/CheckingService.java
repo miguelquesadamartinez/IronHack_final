@@ -14,7 +14,7 @@ public class CheckingService implements CheckingServiceInterface {
     CheckingRepository checkingRepository;
 
     @Override
-    public Account createChecking(Checking checking) {
+    public Checking createChecking(Checking checking) {
         return null;
     }
 }
