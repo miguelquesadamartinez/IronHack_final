@@ -1,4 +1,4 @@
 package lab.miguel.code.repositories;
 
-public interface CredirCardRepository {
+public interface CreditcardRepository {
 }

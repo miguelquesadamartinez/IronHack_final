@@ -10,12 +10,5 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class SavingsController implements SavingsControllerInterface {
 
-    @Autowired
-    SavingsServiceInterface savingsService;
 
-
-    @Override
-    public Savings createSavings(Savings savings) {
-        return null;
-    }
 }

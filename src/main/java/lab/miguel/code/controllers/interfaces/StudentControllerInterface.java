@@ -5,5 +5,5 @@ import lab.miguel.code.entity.StudentChecking;
 
 public interface StudentControllerInterface {
 
-    StudentChecking createStudent(StudentChecking studentChecking);
+
 }

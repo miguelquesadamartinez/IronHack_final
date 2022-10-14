@@ -12,12 +12,4 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class StudentController implements StudentControllerInterface {
 
-    @Autowired
-    StudentServiceInterface studentService;
-
-
-    @Override
-    public StudentChecking createStudent(StudentChecking studentChecking) {
-        return null;
-    }
 }

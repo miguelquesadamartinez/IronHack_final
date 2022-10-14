@@ -12,17 +12,17 @@ import java.time.LocalDate;
 @Entity
 @Getter
 @Setter
-public class CreditCard extends Account {
+public class Creditcard extends Account {
 
     private double creditLimit;
     private double interestRate;
 
-    public CreditCard() {
+    public Creditcard() {
         this.creditLimit = 100;
         this.interestRate = 0.2;
     }
 
-    public CreditCard(double balance, AccountHolders primaryOwner, AccountHolders secondaryOwner, LocalDate creationDate, Status status, String secretKey, LocalDate dateLastAction, double creditLimit, double interestRate) {
+    public Creditcard(double balance, AccountHolders primaryOwner, AccountHolders secondaryOwner, LocalDate creationDate, Status status, String secretKey, LocalDate dateLastAction, double creditLimit, double interestRate) {
         super(balance, primaryOwner, secondaryOwner, creationDate, status, secretKey, dateLastAction);
         if (interestRate <= 0.2 && interestRate > 0.1 ) {
             this.interestRate = interestRate;

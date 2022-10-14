@@ -5,5 +5,4 @@ import lab.miguel.code.entity.Savings;
 
 public interface SavingsControllerInterface {
 
-    Savings createSavings(Savings savings);
 }
