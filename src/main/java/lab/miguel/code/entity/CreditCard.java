@@ -1,6 +1,8 @@
 package lab.miguel.code.entity;
 
 import lab.miguel.code.enums.Status;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -8,6 +10,8 @@ import javax.persistence.Entity;
 import java.time.LocalDate;
 
 @Entity
+@Getter
+@Setter
 public class CreditCard extends Account {
 
     private double creditLimit;
@@ -38,7 +42,12 @@ public class CreditCard extends Account {
     }
 
     public void setCreditLimit(double creditLimit) {
-        this.creditLimit = creditLimit;
+
+        if (creditLimit >= 100 && creditLimit <= 100000) {
+            this.creditLimit = creditLimit;
+        } else {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+        };
     }
 
     public double getInterestRate() {
@@ -46,6 +55,10 @@ public class CreditCard extends Account {
     }
 
     public void setInterestRate(double interestRate) {
-        this.interestRate = interestRate;
+        if (interestRate <= 0.2 && interestRate > 0.1 ) {
+            this.interestRate = interestRate;
+        } else if (interestRate < 0.1 || interestRate > 0.2) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+        }
     }
 }

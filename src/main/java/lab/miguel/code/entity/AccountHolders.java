@@ -1,11 +1,15 @@
 package lab.miguel.code.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
+@Getter
+@Setter
 public class AccountHolders {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -35,43 +39,4 @@ public class AccountHolders {
         this.mailingAddress = mailingAddress;
     }
 
-    public Address getMailingAddress() {
-        return mailingAddress;
-    }
-
-    public void setMailingAddress(Address mailingAddress) {
-        this.mailingAddress = mailingAddress;
-    }
-
-    public Address getPrimaryAddress() {
-        return primaryAddress;
-    }
-
-    public void setPrimaryAddress(Address primaryAddress) {
-        this.primaryAddress = primaryAddress;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public LocalDate getDateOFBirth() {
-        return dateOFBirth;
-    }
-
-    public void setDateOFBirth(LocalDate dateOFBirth) {
-        this.dateOFBirth = dateOFBirth;
-    }
 }

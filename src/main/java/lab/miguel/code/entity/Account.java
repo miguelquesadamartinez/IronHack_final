@@ -1,16 +1,22 @@
 package lab.miguel.code.entity;
 
 import lab.miguel.code.enums.Status;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
+@Getter
+@Setter
 public abstract class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false)
     private Long id;
+
+    private static double PENALTY_FEE = 40;
 
     private double balance;
     @ManyToOne
@@ -39,68 +45,4 @@ public abstract class Account {
         this.secretKey = secretKey;
     }
 
-    public double getBalance() {
-        return balance;
-    }
-
-    public void setBalance(double balance) {
-        this.balance = balance;
-    }
-
-    public double getPenaltyFee() {
-        return penaltyFee;
-    }
-
-    public void setPenaltyFee(double penaltyFee) {
-        this.penaltyFee = penaltyFee;
-    }
-
-    public LocalDate getCreationDate() {
-        return creationDate;
-    }
-
-    public void setCreationDate(LocalDate creationDate) {
-        this.creationDate = creationDate;
-    }
-
-    public Status getStatus() {
-        return status;
-    }
-
-    public void setStatus(Status status) {
-        this.status = status;
-    }
-
-    public String getSecretKey() {
-        return secretKey;
-    }
-
-    public void setSecretKey(String secretKey) {
-        this.secretKey = secretKey;
-    }
-
-    public AccountHolders getSecondaryOwner() {
-        return SecondaryOwner;
-    }
-
-    public void setSecondaryOwner(AccountHolders SecondaryOwner) {
-        this.SecondaryOwner = SecondaryOwner;
-    }
-
-    public AccountHolders getPrimaryOwner() {
-        return PrimaryOwner;
-    }
-
-    public void setPrimaryOwner(AccountHolders PrimaryOwner) {
-        this.PrimaryOwner = PrimaryOwner;
-    }
-
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 }
