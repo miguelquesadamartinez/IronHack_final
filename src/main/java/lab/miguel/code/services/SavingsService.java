@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class SavingsService {
 
-    @Autowired(required = false)
+    @Autowired
     SavingsRepository savingsRepository;
 
 
