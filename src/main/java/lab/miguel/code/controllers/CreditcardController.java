@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class CreditcardController implements CreditcardControllerInterface {
 
-    @Autowired
+    @Autowired(required = false)
     CreditcardServiceInterface creditCardService;
 
 }
