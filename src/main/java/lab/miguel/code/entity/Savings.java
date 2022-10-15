@@ -14,28 +14,29 @@ import java.time.LocalDate;
 @Setter
 public class Savings extends Account {
 
+    /*
     private static double DEFAULT_INTEREST = 0.0025;
     private static double MAX_BALANCE = 1000;
     private static double MIN_BALANCE = 100;
-
+    */
     private double interestRate;
 
     private double minimumBalance;
 
     public Savings() {
-        this.interestRate = DEFAULT_INTEREST;
-        this.minimumBalance = MIN_BALANCE;
+        this.interestRate = 0.0025;
+        this.minimumBalance = 1000;
     }
 
     public Savings(double balance, AccountHolders primaryOwner, AccountHolders secondaryOwner, LocalDate creationDate, Status status, String secretKey, LocalDate dateLastAction, double interestRate, double minimumBalance) {
         super(balance, primaryOwner, secondaryOwner, creationDate, status, secretKey, dateLastAction);
-        if (interestRate <= DEFAULT_INTEREST ) {
+        if (interestRate <= 0.5 ) {
             this.interestRate = interestRate;
         } else {
-            this.interestRate = DEFAULT_INTEREST;
+            this.interestRate = 0.0025;
         }
 
-        if (minimumBalance >= MIN_BALANCE && minimumBalance <= MAX_BALANCE) {
+        if (minimumBalance >= 100 && minimumBalance <= 1000) {
             this.minimumBalance = minimumBalance;
         } else {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
@@ -47,7 +48,7 @@ public class Savings extends Account {
     }
 
     public void setInterestRate(double interestRate) {
-        if (interestRate <= DEFAULT_INTEREST ) {
+        if (interestRate <= 0.0025 ) {
             this.interestRate = interestRate;
         } else {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
@@ -61,7 +62,7 @@ public class Savings extends Account {
     }
 
     public void setMinimumBalance(double minimumBalance) {
-        if (minimumBalance >= MIN_BALANCE && minimumBalance <= MAX_BALANCE) {
+        if (minimumBalance >= 100 && minimumBalance <= 1000) {
             this.minimumBalance = minimumBalance;
         } else {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
