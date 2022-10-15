@@ -1,4 +1,11 @@
 package lab.miguel.code.repositories;
 
-public interface StudentRepository {
+import lab.miguel.code.entity.Checking;
+import lab.miguel.code.entity.StudentChecking;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface StudentRepository extends JpaRepository<StudentChecking, Long> {
+
+
+
 }
