@@ -21,11 +21,9 @@ public class AccountHolders {
 
     @ManyToOne
     @JoinColumn(name = "primary_address_id")
-    @JsonIgnore
     private Address primaryAddress;
     @ManyToOne
     @JoinColumn(name = "mailing_address_id")
-    @JsonIgnore
     private Address mailingAddress;
 
     public AccountHolders() {

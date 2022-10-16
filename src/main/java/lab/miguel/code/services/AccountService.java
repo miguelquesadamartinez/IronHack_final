@@ -20,7 +20,6 @@ public class AccountService implements AccountServiceInterface {
     AccountRepository accountRepository;
 
     @Override
-
     public BalanceDTO getBalance(Long id) {
 
         if(!accountRepository.findById(id).isPresent()){
