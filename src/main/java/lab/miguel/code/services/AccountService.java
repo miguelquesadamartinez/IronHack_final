@@ -1,5 +1,6 @@
 package lab.miguel.code.services;
 
+import lab.miguel.code.controllers.DTOs.AccountIdDTO;
 import lab.miguel.code.controllers.DTOs.BalanceDTO;
 import lab.miguel.code.entity.Account;
 import lab.miguel.code.entity.AccountHolders;
@@ -31,15 +32,24 @@ public class AccountService implements AccountServiceInterface {
     }
 
     @Override
-    public void transferToAccount(Account origin, double amount, Optional<Account> holder1, Optional<Account> holder2) {
+    public void transferToAccount(AccountIdDTO origin, double amount, Optional<AccountIdDTO> holder1, Optional<AccountIdDTO> holder2) {
 
-        if (origin.getBalance() < amount)
+        if(amount == 0){
+            throw new ResponseStatusException(HttpStatus.FORBIDDEN);
+        }
+
+        Account workingOriginAccount = accountRepository.findById(origin.getId()).get();
+
+
+        if (workingOriginAccount.getBalance() < amount)
             throw new RuntimeException("Cantidad superior a balance");
 
         if(holder1.isPresent()) {
-            holder1.get().setBalance(holder1.get().getBalance() + amount);
+            Account workingUnoAccount = accountRepository.findById(origin.getId()).get();
+            workingUnoAccount.setBalance(workingUnoAccount.getBalance() + amount);
         } else if (holder2.isPresent()){
-            holder2.get().setBalance(holder2.get().getBalance() + amount);
+            Account workingDosAccount = accountRepository.findById(origin.getId()).get();
+            workingDosAccount.setBalance(workingDosAccount.getBalance() + amount);
         } else {
             throw new RuntimeException("Pues como no me digas a quien lo mandas, vamos bien");
         }

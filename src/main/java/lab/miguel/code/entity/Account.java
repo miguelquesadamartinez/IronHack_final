@@ -41,8 +41,6 @@ public abstract class Account {
     public Account() {
     }
 
-    // TODO: Falta constructor
-
     public static Long getAge(String fecha){
 
         LocalDate start = LocalDate.of(1996, 2, 29);
