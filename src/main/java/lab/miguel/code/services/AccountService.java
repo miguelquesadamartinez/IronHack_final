@@ -37,9 +37,11 @@ public class AccountService implements AccountServiceInterface {
             throw new RuntimeException("Cantidad superior a balance");
 
         if(holder1.isPresent()) {
-
+            holder1.get().setBalance(holder1.get().getBalance() + amount);
         } else if (holder2.isPresent()){
-
+            holder2.get().setBalance(holder2.get().getBalance() + amount);
+        } else {
+            throw new RuntimeException("Pues como no me digas a quien lo mandas, vamos bien");
         }
     }
 

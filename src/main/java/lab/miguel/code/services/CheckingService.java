@@ -29,16 +29,4 @@ public class CheckingService implements CheckingServiceInterface {
         return  checkingRepository.save(checking);
     }
 
-    @Override
-    public void transferToAccount(Checking origin, double amount, Optional<AccountHolders> holder1, Optional<AccountHolders> holder2) {
-
-        if (origin.getBalance() < amount)
-            throw new RuntimeException("Cantidad superior a balance");
-
-        if(holder1.isPresent()) {
-
-        } else if (holder2.isPresent()){
-
-        }
-    }
 }

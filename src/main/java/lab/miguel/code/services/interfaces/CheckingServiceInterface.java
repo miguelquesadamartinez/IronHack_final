@@ -10,5 +10,4 @@ public interface CheckingServiceInterface {
 
     Checking createChecking(Checking checking);
 
-    public void transferToAccount(Checking origin, double amount, Optional<AccountHolders> holder1, Optional<AccountHolders> holder2);
 }

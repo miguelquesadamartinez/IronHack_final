@@ -24,10 +24,4 @@ public class CheckingController implements CheckingControllerInterfce {
         return checkingService.createChecking(checking);
     }
 
-    @GetMapping("/transfer-to-account")
-    @ResponseStatus(HttpStatus.OK)
-    public void transferToAccount(@RequestParam Checking origin, @RequestBody double amount, @RequestParam Optional<AccountHolders> holder1, @RequestParam Optional<AccountHolders> holder2){
-
-        checkingService.transferToAccount(origin, amount, holder1, holder2);
-    }
 }
