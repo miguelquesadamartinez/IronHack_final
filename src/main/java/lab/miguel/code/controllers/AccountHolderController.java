@@ -1,5 +1,6 @@
 package lab.miguel.code.controllers;
 
+import lab.miguel.code.controllers.interfaces.AccountHolderControllerInterface;
 import lab.miguel.code.entity.AccountHolders;
 import lab.miguel.code.services.interfaces.AccountHolderServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-public class AccountHolderController {
+public class AccountHolderController implements AccountHolderControllerInterface {
 
 
     @Autowired(required = false)
@@ -23,7 +24,7 @@ public class AccountHolderController {
 
     @GetMapping("/get-accounts")
     @ResponseStatus(HttpStatus.OK)
-    public List<AccountHolders> findAll(@PathVariable Long id){
+    public List<AccountHolders> findAll(){
         return accountHolderServiceInterface.findAll();
     }
 
