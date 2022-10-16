@@ -1,6 +1,7 @@
 package lab.miguel.code.services;
 
 import lab.miguel.code.entity.Account;
+import lab.miguel.code.entity.AccountHolders;
 import lab.miguel.code.entity.Checking;
 import lab.miguel.code.repositories.CheckingRepository;
 import lab.miguel.code.repositories.StudentRepository;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.AttributeOverride;
+import java.util.Optional;
 
 @Service
 public class CheckingService implements CheckingServiceInterface {
@@ -27,4 +29,16 @@ public class CheckingService implements CheckingServiceInterface {
         return  checkingRepository.save(checking);
     }
 
+    @Override
+    public void transferToAccount(Checking origin, double amount, Optional<AccountHolders> holder1, Optional<AccountHolders> holder2) {
+
+        if (origin.getBalance() < amount)
+            throw new RuntimeException("Cantidad superior a balance");
+
+        if(holder1.isPresent()) {
+
+        } else if (holder2.isPresent()){
+
+        }
+    }
 }
