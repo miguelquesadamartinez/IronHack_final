@@ -12,9 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class CreditcardController implements CreditcardControllerInterface {
-
-    // TODO: Esto es una chapuza !!
-    @Autowired(required = false)
+    @Autowired
     CreditcardServiceInterface creditCardService;
 
     @PostMapping("/create-credit-card")

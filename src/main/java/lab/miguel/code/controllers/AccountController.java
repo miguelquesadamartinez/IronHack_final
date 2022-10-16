@@ -30,7 +30,8 @@ public class AccountController implements AccountControllerInterface {
                                     @RequestParam(required = false) AccountIdDTO origin,
                                     @RequestBody double amount,
                                     @RequestParam Optional<AccountIdDTO> holder1,
-                                    @RequestParam Optional<AccountIdDTO> holder2){
+                                    @RequestParam Optional<AccountIdDTO> holder2
+                                ){
 
         accountService.transferToAccount(origin, amount, holder1, holder2);
     }

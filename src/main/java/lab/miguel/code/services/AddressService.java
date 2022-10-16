@@ -4,6 +4,7 @@ import lab.miguel.code.entity.AccountHolders;
 import lab.miguel.code.entity.Address;
 import lab.miguel.code.repositories.AddressRepository;
 import lab.miguel.code.services.interfaces.AddressServiceInterface;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -11,6 +12,7 @@ import java.util.List;
 
 public class AddressService implements AddressServiceInterface {
 
+    @Autowired
     AddressRepository addressRepository;
 
     @Override

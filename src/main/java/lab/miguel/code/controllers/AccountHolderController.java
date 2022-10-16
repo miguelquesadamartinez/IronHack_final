@@ -13,7 +13,7 @@ import java.util.List;
 public class AccountHolderController implements AccountHolderControllerInterface {
 
 
-    @Autowired(required = false)
+    @Autowired
     AccountHolderServiceInterface accountHolderServiceInterface;
 
     @PostMapping("/create-account-holder")
