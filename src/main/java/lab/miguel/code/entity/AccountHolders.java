@@ -17,7 +17,7 @@ public class AccountHolders {
     private Long id;
 
     private String name;
-    private LocalDate dateOFBirth;
+    private String dateOFBirth;
 
     @ManyToOne
     @JoinColumn(name = "primary_address_id")
@@ -31,7 +31,7 @@ public class AccountHolders {
     public AccountHolders() {
     }
 
-    public AccountHolders(Long id, String name, LocalDate dateOFBirth, Address primaryAddress, Address mailingAddress) {
+    public AccountHolders(Long id, String name, String dateOFBirth, Address primaryAddress, Address mailingAddress) {
         this.id = id;
         this.name = name;
         this.dateOFBirth = dateOFBirth;
