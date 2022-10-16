@@ -8,6 +8,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 
 @Entity
 @Getter
@@ -41,6 +42,15 @@ public abstract class Account {
     }
 
     // TODO: Falta constructor
+
+    public static Long getAge(String fecha){
+
+        LocalDate start = LocalDate.of(1996, 2, 29);
+        LocalDate end = LocalDate.now();
+        Long years = ChronoUnit.YEARS.between(start, end);
+
+        return years;
+    }
 
     public static boolean makeAyear(){
         LocalDate currentDate = LocalDate.now();
