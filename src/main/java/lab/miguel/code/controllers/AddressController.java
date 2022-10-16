@@ -11,7 +11,8 @@ import java.util.List;
 
 @RestController
 public class AddressController implements AddressControllerInterface {
-    @Autowired(required = false)
+    // TODO: Asi Peta
+    @Autowired
     AddressServiceInterface addressServiceInterface;
 
     @PostMapping("/create-address")
