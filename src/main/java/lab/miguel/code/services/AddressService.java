@@ -26,7 +26,7 @@ public class AddressService implements AddressServiceInterface {
     }
     public Address findById(Long id){
         if(!addressRepository.findById(id).isPresent())
-            throw new ResponseStatusException(HttpStatus.FORBIDDEN);
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         return addressRepository.findById(id).get();
     }
 }

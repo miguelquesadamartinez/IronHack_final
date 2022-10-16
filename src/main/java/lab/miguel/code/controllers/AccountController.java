@@ -1,5 +1,6 @@
 package lab.miguel.code.controllers;
 
+import lab.miguel.code.controllers.DTOs.BalanceDTO;
 import lab.miguel.code.controllers.interfaces.AccountControllerInterface;
 import lab.miguel.code.entity.Account;
 import lab.miguel.code.services.interfaces.AccountServiceInterface;
@@ -14,8 +15,8 @@ public class AccountController implements AccountControllerInterface {
     AccountServiceInterface accountService;
 
 
-    public Account createAccount(Account account) {
-
-        return accountService.createAccount(account);
+    @Override
+    public BalanceDTO getBalance(Long id) {
+        return accountService.getBalance(id);
     }
 }

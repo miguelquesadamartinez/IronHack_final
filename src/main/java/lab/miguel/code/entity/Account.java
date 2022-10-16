@@ -52,7 +52,7 @@ public abstract class Account {
         return years;
     }
 
-    public static boolean makeAyear(){
+    public static boolean makeAYear(){
         LocalDate currentDate = LocalDate.now();
         LocalDate pastDate = currentDate.minusYears(1);
 
