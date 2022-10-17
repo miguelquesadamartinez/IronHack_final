@@ -3,9 +3,7 @@ package lab.miguel.code.controllers;
 import lab.miguel.code.controllers.DTOs.AccountIdDTO;
 import lab.miguel.code.controllers.DTOs.BalanceDTO;
 import lab.miguel.code.controllers.interfaces.AccountControllerInterface;
-import lab.miguel.code.entity.Account;
-import lab.miguel.code.entity.AccountHolders;
-import lab.miguel.code.services.interfaces.AccountServiceInterface;
+import lab.miguel.code.services.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -15,7 +13,7 @@ import java.util.Optional;
 @RestController
 public class AccountController implements AccountControllerInterface {
     @Autowired
-    AccountServiceInterface accountService;
+    AccountService accountService;
 
     @GetMapping("/get-account-balance")
     @ResponseStatus(HttpStatus.OK)

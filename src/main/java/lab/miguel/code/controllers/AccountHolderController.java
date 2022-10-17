@@ -2,7 +2,7 @@ package lab.miguel.code.controllers;
 
 import lab.miguel.code.controllers.interfaces.AccountHolderControllerInterface;
 import lab.miguel.code.entity.AccountHolders;
-import lab.miguel.code.services.interfaces.AccountHolderServiceInterface;
+import lab.miguel.code.services.AccountHolderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -14,7 +14,7 @@ public class AccountHolderController implements AccountHolderControllerInterface
 
 
     @Autowired
-    AccountHolderServiceInterface accountHolderServiceInterface;
+    AccountHolderService accountHolderServiceInterface;
 
     @PostMapping("/create-account-holder")
     @ResponseStatus(HttpStatus.OK)

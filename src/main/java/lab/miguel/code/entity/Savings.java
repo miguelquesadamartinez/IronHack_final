@@ -37,9 +37,9 @@ public class Savings extends Account {
         }
 
         if (minimumBalance >= 100 && minimumBalance <= 1000) {
-            this.minimumBalance = minimumBalance;
-        } else {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+                this.minimumBalance = minimumBalance;
+            } else {
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         }
     }
 
