@@ -1,5 +1,6 @@
 package lab.miguel.code.controllers;
 
+import lab.miguel.code.controllers.DTOs.CreateAccountHolderDTO;
 import lab.miguel.code.controllers.interfaces.AccountHolderControllerInterface;
 import lab.miguel.code.entity.AccountHolders;
 import lab.miguel.code.services.AccountHolderService;
@@ -18,7 +19,7 @@ public class AccountHolderController implements AccountHolderControllerInterface
 
     @PostMapping("/create-account-holder")
     @ResponseStatus(HttpStatus.OK)
-    public AccountHolders createAccountHolder(@RequestBody AccountHolders accountHolders){
+    public AccountHolders createAccountHolder(@RequestBody CreateAccountHolderDTO accountHolders){
         return accountHolderServiceInterface.createAccountHolder(accountHolders);
     }
 

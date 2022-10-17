@@ -1,5 +1,6 @@
 package lab.miguel.code;
 
+import lab.miguel.code.controllers.DTOs.CreateAccountHolderDTO;
 import lab.miguel.code.entity.AccountHolders;
 import lab.miguel.code.entity.Address;
 import lab.miguel.code.services.AccountHolderService;
@@ -18,7 +19,6 @@ public class MiguelApplication implements CommandLineRunner {
 
 	// TODO: Las tablas ... me ha creado pocas, no ?
 
-	// TODO: Muy bruto trabajar con todo el objeto ?
 	public static void main(String[] args) {
 
 		SpringApplication.run(MiguelApplication.class, args);
@@ -32,7 +32,7 @@ public class MiguelApplication implements CommandLineRunner {
 		addressService.createAddress(new Address("Cuenca, 81"));
 		addressService.createAddress(new Address("Velia, 69"));
 
-		accountHolderService.createAccountHolder(new AccountHolders("Miguel", "18/04/1975", addr1));
+		accountHolderService.createAccountHolder(new CreateAccountHolderDTO("Miguel", "18/04/1975", 1l, 1l));
 
 	}
 }

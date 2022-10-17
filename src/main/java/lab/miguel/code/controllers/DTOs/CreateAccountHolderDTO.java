@@ -1,17 +1,29 @@
 package lab.miguel.code.controllers.DTOs;
 
+
+import lab.miguel.code.entity.Address;
+
 public class CreateAccountHolderDTO {
 
     private String name;
     private String dateOFBirth;
-    private int primaryAddress;
-    private int mailingAddress;
+    private Long primaryAddress;
+    private Long mailingAddress;
 
-    public CreateAccountHolderDTO(String name, String dateOFBirth, int primaryAddress, int mailingAddress) {
+    public CreateAccountHolderDTO() {
+    }
+
+    public CreateAccountHolderDTO(String name, String dateOFBirth, Long primaryAddress, Long mailingAddress) {
         this.name = name;
         this.dateOFBirth = dateOFBirth;
         this.primaryAddress = primaryAddress;
         this.mailingAddress = mailingAddress;
+    }
+
+    public CreateAccountHolderDTO(String name, String dateOFBirth, Long primaryAddress) {
+        this.name = name;
+        this.dateOFBirth = dateOFBirth;
+        this.primaryAddress = primaryAddress;
     }
 
     public String getName() {
@@ -30,19 +42,19 @@ public class CreateAccountHolderDTO {
         this.dateOFBirth = dateOFBirth;
     }
 
-    public int getPrimaryAddress() {
+    public Long getPrimaryAddress() {
         return primaryAddress;
     }
 
-    public void setPrimaryAddress(int primaryAddress) {
+    public void setPrimaryAddress(Long primaryAddress) {
         this.primaryAddress = primaryAddress;
     }
 
-    public int getMailingAddress() {
+    public Long getMailingAddress() {
         return mailingAddress;
     }
 
-    public void setMailingAddress(int mailingAddress) {
+    public void setMailingAddress(Long mailingAddress) {
         this.mailingAddress = mailingAddress;
     }
 }
