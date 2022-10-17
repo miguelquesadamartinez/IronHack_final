@@ -26,6 +26,8 @@ public class AccountHolderService implements AccountHolderServiceInterface {
             throw new ResponseStatusException(HttpStatus.FORBIDDEN);
         }
 
+        //AccountHolders tempAccountHolder = new AccountHolders(accountHolder.getName());
+
         return accountHolderRepository.save(accountHolder);
 
     }

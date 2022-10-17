@@ -29,12 +29,16 @@ public class AccountHolders {
     public AccountHolders() {
     }
 
-    public AccountHolders(Long id, String name, String dateOFBirth, Address primaryAddress, Address mailingAddress) {
-        this.id = id;
+    public AccountHolders(String name, String dateOFBirth, Address primaryAddress, Address mailingAddress) {
         this.name = name;
         this.dateOFBirth = dateOFBirth;
         this.primaryAddress = primaryAddress;
         this.mailingAddress = mailingAddress;
     }
 
+    public AccountHolders(String name, String dateOFBirth, Address primaryAddress) {
+        this.name = name;
+        this.dateOFBirth = dateOFBirth;
+        this.primaryAddress = primaryAddress;
+    }
 }
