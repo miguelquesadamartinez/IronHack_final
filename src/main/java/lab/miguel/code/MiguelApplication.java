@@ -45,8 +45,9 @@ public class MiguelApplication implements CommandLineRunner {
 		AccountHolders accHold1 = accountHolderService.createAccountHolder(new CreateAccountHolderDTO("Miguel", "18/04/1975", 1l, 1l));
 		AccountHolders accHold2 = accountHolderService.createAccountHolder(new CreateAccountHolderDTO("Pepe", "18/04/1975", 1l, 1l));
 
+		System.out.println(LocalDate.now());
 
-		//Savings savings1 = savingsService.createSavings(new CreateSavingsDTO(1l, 2l, LocalDate.now(), Status.ACTIVE, "12345", LocalDate.now(), 0.0025, 500));
+		Savings savings1 = savingsService.createSavings(new CreateSavingsDTO(500, 5l, 6l, LocalDate.now(), Status.ACTIVE, "12345", LocalDate.now(), 0.0025, 500));
 
 		//
 

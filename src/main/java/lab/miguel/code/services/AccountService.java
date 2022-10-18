@@ -2,9 +2,11 @@ package lab.miguel.code.services;
 
 import lab.miguel.code.controllers.DTOs.AccountIdDTO;
 import lab.miguel.code.controllers.DTOs.BalanceDTO;
+import lab.miguel.code.controllers.DTOs.TransferDTO;
 import lab.miguel.code.entity.Account;
 import lab.miguel.code.entity.AccountHolders;
 import lab.miguel.code.entity.Checking;
+import lab.miguel.code.repositories.AccountHolderRepository;
 import lab.miguel.code.repositories.AccountRepository;
 import lab.miguel.code.services.interfaces.AccountServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +20,8 @@ import java.util.Optional;
 public class AccountService implements AccountServiceInterface {
     @Autowired
     AccountRepository accountRepository;
+    @Autowired
+    AccountHolderRepository accountHolderRepository;
 
     @Override
     public BalanceDTO getBalance(Long id) {
@@ -31,29 +35,36 @@ public class AccountService implements AccountServiceInterface {
     }
 
     @Override
-    public void transferToAccount(AccountIdDTO origin, double amount, Optional<AccountIdDTO> holder1, Optional<AccountIdDTO> holder2) {
+    public void transferToAccount(TransferDTO transferDTO) {
 
-        if(amount == 0){
+        if(transferDTO.getAmount() == 0){
             throw new ResponseStatusException(HttpStatus.FORBIDDEN);
         }
 
-        Account workingOriginAccount = accountRepository.findById(origin.getId()).get();
+        Account originAccount = accountRepository.findById(transferDTO.getIdOrigin()).get();
+        AccountHolders acc1 = null;
+        AccountHolders acc2 = null;
 
+        acc1 = accountHolderRepository.findById(transferDTO.getIdHolderUno()).get();
+        acc2 = accountHolderRepository.findById(transferDTO.getIdHolderDos()).get();
 
-        if (workingOriginAccount.getDoubleBalance() < amount)
+        if (originAccount.getDoubleBalance() < transferDTO.getAmount())
             throw new RuntimeException("Cantidad superior a balance");
 
-        if(holder1.isPresent()) {
-            Account workingUnoAccount = accountRepository.findById(origin.getId()).get();
+        if(accountHolderRepository.findById(transferDTO.getIdHolderUno()).isPresent()) {
+            Account workingUnoAccount = accountRepository.findById(transferDTO.getIdHolderUno()).get();
 
-            workingUnoAccount.increaseAmount(amount);
+            workingUnoAccount.increaseAmount(transferDTO.getAmount());
 
-        } else if (holder2.isPresent()){
-            Account workingDosAccount = accountRepository.findById(origin.getId()).get();
-            workingDosAccount.decreaseAmoutn(amount);
+        } else if (accountHolderRepository.findById(transferDTO.getIdHolderDos()).isPresent()){
+            Account workingDosAccount = accountRepository.findById(transferDTO.getIdHolderDos()).get();
+            workingDosAccount.increaseAmount(transferDTO.getAmount());
         } else {
             throw new RuntimeException("Pues como no me digas a quien lo mandas, vamos bien");
         }
+
+        originAccount.decreaseAmoutn(transferDTO.getAmount());
+
     }
 
 
