@@ -25,7 +25,7 @@ public class AccountService implements AccountServiceInterface {
         if(!accountRepository.findById(id).isPresent()){
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
-        BalanceDTO dto = new BalanceDTO(accountRepository.findById(id).get().getBalance());
+        BalanceDTO dto = new BalanceDTO(accountRepository.findById(id).get().getDoubleBalance());
 
         return dto ;
     }
@@ -40,15 +40,17 @@ public class AccountService implements AccountServiceInterface {
         Account workingOriginAccount = accountRepository.findById(origin.getId()).get();
 
 
-        if (workingOriginAccount.getBalance() < amount)
+        if (workingOriginAccount.getDoubleBalance() < amount)
             throw new RuntimeException("Cantidad superior a balance");
 
         if(holder1.isPresent()) {
             Account workingUnoAccount = accountRepository.findById(origin.getId()).get();
-            workingUnoAccount.setBalance(workingUnoAccount.getBalance() + amount);
+
+            workingUnoAccount.increaseAmount(amount);
+
         } else if (holder2.isPresent()){
             Account workingDosAccount = accountRepository.findById(origin.getId()).get();
-            workingDosAccount.setBalance(workingDosAccount.getBalance() + amount);
+            workingDosAccount.decreaseAmoutn(amount);
         } else {
             throw new RuntimeException("Pues como no me digas a quien lo mandas, vamos bien");
         }

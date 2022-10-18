@@ -6,6 +6,7 @@ import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
@@ -21,7 +22,7 @@ public abstract class Account {
 
     private static double PENALTY_FEE = 40;
 
-    private double balance;
+    private Money balance;
     @ManyToOne
     @JoinColumn(name = "primary_owner_id")
     private AccountHolders PrimaryOwner;
@@ -60,7 +61,7 @@ public abstract class Account {
             return false;
     }
 
-    public Account(double balance, AccountHolders primaryOwner, AccountHolders secondaryOwner, LocalDate creationDate, Status status, String secretKey, LocalDate dateLastAction) {
+    public Account(Money balance, AccountHolders primaryOwner, AccountHolders secondaryOwner, LocalDate creationDate, Status status, String secretKey, LocalDate dateLastAction) {
         this.balance = balance;
         PrimaryOwner = primaryOwner;
         SecondaryOwner = secondaryOwner;
@@ -70,5 +71,17 @@ public abstract class Account {
         this.dateLastAction = dateLastAction;
     }
 
+    public double getDoubleBalance(){
+
+        return this.balance.getAmount().longValue();
+
+    }
+
+    public void increaseAmount(double amount){
+        this.balance.increaseAmount(new Money(BigDecimal.valueOf(amount)));
+    }
+    public void decreaseAmoutn(double amount){
+        this.balance.decreaseAmount(new Money(BigDecimal.valueOf(amount)));
+    }
 
 }

@@ -18,7 +18,11 @@ public class CreateSavingsDTO {
     private double interestRate;
     private double minimumBalance;
 
-    public CreateSavingsDTO(Long primaryOwner, Long secondaryOwner, LocalDate creationDate, Status status, String secretKey, LocalDate dateLastAction, double interestRate, double minimumBalance) {
+    public CreateSavingsDTO() {
+    }
+
+    public CreateSavingsDTO(double balance, Long primaryOwner, Long secondaryOwner, LocalDate creationDate, Status status, String secretKey, LocalDate dateLastAction, double interestRate, double minimumBalance) {
+        this.balance = balance;
         PrimaryOwner = primaryOwner;
         SecondaryOwner = secondaryOwner;
         this.creationDate = creationDate;
@@ -27,6 +31,14 @@ public class CreateSavingsDTO {
         this.dateLastAction = dateLastAction;
         this.interestRate = interestRate;
         this.minimumBalance = minimumBalance;
+    }
+
+    public double getBalance() {
+        return balance;
+    }
+
+    public void setBalance(double balance) {
+        this.balance = balance;
     }
 
     public Long getPrimaryOwner() {

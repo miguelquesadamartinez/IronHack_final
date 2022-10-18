@@ -28,7 +28,7 @@ public class Savings extends Account {
         this.minimumBalance = 1000;
     }
 
-    public Savings(double balance, AccountHolders primaryOwner, AccountHolders secondaryOwner, LocalDate creationDate, Status status, String secretKey, LocalDate dateLastAction, double interestRate, double minimumBalance) {
+    public Savings(Money balance, AccountHolders primaryOwner, AccountHolders secondaryOwner, LocalDate creationDate, Status status, String secretKey, LocalDate dateLastAction, double interestRate, double minimumBalance) {
         super(balance, primaryOwner, secondaryOwner, creationDate, status, secretKey, dateLastAction);
         if (interestRate <= 0.5 ) {
             this.interestRate = interestRate;
