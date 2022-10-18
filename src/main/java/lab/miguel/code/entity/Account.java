@@ -10,6 +10,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
+import java.util.List;
 
 @Entity
 @Getter
@@ -83,5 +84,6 @@ public abstract class Account {
     public void decreaseAmoutn(double amount){
         this.balance.decreaseAmount(new Money(BigDecimal.valueOf(amount)));
     }
+
 
 }

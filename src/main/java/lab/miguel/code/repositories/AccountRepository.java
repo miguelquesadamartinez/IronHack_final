@@ -8,4 +8,7 @@ import org.springframework.stereotype.Repository;
 public interface AccountRepository extends JpaRepository<Account, Long> {
 
 
+    // TODO: Peta
+    Account findByPrimaryOwnerId (Long id);
+    //Account findBySecondaryOwnerId (Long id);
 }

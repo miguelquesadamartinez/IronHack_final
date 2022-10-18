@@ -41,7 +41,8 @@ public class CheckingService implements CheckingServiceInterface {
             accHold2 = accountHolderRepository.findById(checkingDTO.getSecondaryOwner()).get();
         }
 
-        // TODO: Coger los valores
+
+
         Money balance = new Money(new BigDecimal(checkingDTO.getBalance()));
 
         Checking tempChecking = new Checking(balance, accHold1, accHold2, LocalDate.now(), Status.ACTIVE, checkingDTO.getSecretKey(), LocalDate.now(), checkingDTO.getMonthlyMaintenanceFee(), checkingDTO.getMinimumBalance());

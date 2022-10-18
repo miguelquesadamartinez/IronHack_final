@@ -14,6 +14,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -45,27 +46,42 @@ public class AccountService implements AccountServiceInterface {
         AccountHolders acc1 = null;
         AccountHolders acc2 = null;
 
+        if (!accountHolderRepository.findById(transferDTO.getIdHolderUno()).isPresent()
+            &&
+            !accountHolderRepository.findById(transferDTO.getIdHolderDos()).isPresent())
+            throw new RuntimeException("No hay a quien mandar");
+
         acc1 = accountHolderRepository.findById(transferDTO.getIdHolderUno()).get();
+
         acc2 = accountHolderRepository.findById(transferDTO.getIdHolderDos()).get();
+
 
         if (originAccount.getDoubleBalance() < transferDTO.getAmount())
             throw new RuntimeException("Cantidad superior a balance");
 
         if(accountHolderRepository.findById(transferDTO.getIdHolderUno()).isPresent()) {
-            Account workingUnoAccount = accountRepository.findById(transferDTO.getIdHolderUno()).get();
+            System.out.println("\n\nPaso 005: " + transferDTO.getIdHolderUno() + "\n\n");
 
-            workingUnoAccount.increaseAmount(transferDTO.getAmount());
+            // TODO: findByPrimaryOwnerID
+            //Account workingUnoAccount = accountRepository.findByPrimaryOwnerId(transferDTO.getIdHolderUno());
+            //workingUnoAccount.increaseAmount(transferDTO.getAmount());
 
         } else if (accountHolderRepository.findById(transferDTO.getIdHolderDos()).isPresent()){
-            Account workingDosAccount = accountRepository.findById(transferDTO.getIdHolderDos()).get();
-            workingDosAccount.increaseAmount(transferDTO.getAmount());
+
+            //Account workingDosAccount = accountRepository.findBySecondaryOwnerId(transferDTO.getIdHolderDos());
+            //workingDosAccount.increaseAmount(transferDTO.getAmount());
+
         } else {
             throw new RuntimeException("Pues como no me digas a quien lo mandas, vamos bien");
         }
 
         originAccount.decreaseAmoutn(transferDTO.getAmount());
 
+        System.out.println("\n\nSale en Service - transferToAccount\n\n");
     }
 
+    public List<Account> findAll (){
+        return accountRepository.findAll();
+    }
 
 }
