@@ -18,4 +18,9 @@ public class Checking extends Account{
     public Checking() {
     }
 
+    public Checking(double balance, AccountHolders primaryOwner, AccountHolders secondaryOwner, LocalDate creationDate, Status status, String secretKey, LocalDate dateLastAction, double monthlyMaintenanceFee, double minimumBalance) {
+        super(balance, primaryOwner, secondaryOwner, creationDate, status, secretKey, dateLastAction);
+        this.monthlyMaintenanceFee = monthlyMaintenanceFee;
+        this.minimumBalance = minimumBalance;
+    }
 }

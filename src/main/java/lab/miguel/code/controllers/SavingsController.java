@@ -1,5 +1,6 @@
 package lab.miguel.code.controllers;
 
+import lab.miguel.code.controllers.DTOs.CreateSavingsDTO;
 import lab.miguel.code.controllers.interfaces.SavingsControllerInterface;
 import lab.miguel.code.entity.Savings;
 import lab.miguel.code.services.SavingsService;
@@ -17,9 +18,7 @@ public class SavingsController implements SavingsControllerInterface {
     @ResponseStatus(HttpStatus.OK)
 
     // TODO: Aqui hay un problema, sin @RequestBody me lo crea, pero vacio
-    public Savings createSavings(@RequestBody Savings savings) {
-
-        System.out.println("Entra en Controller: " + savings.getSecretKey());
+    public Savings createSavings(@RequestBody CreateSavingsDTO savings) {
 
         return savingsService.createSavings(savings);
     }

@@ -1,5 +1,6 @@
 package lab.miguel.code.controllers;
 
+import lab.miguel.code.controllers.DTOs.CreateCheckingDTO;
 import lab.miguel.code.controllers.interfaces.CheckingControllerInterfce;
 import lab.miguel.code.entity.Checking;
 import lab.miguel.code.services.CheckingService;
@@ -15,7 +16,8 @@ public class CheckingController implements CheckingControllerInterfce {
 
     @PostMapping("/create-checking")
     @ResponseStatus(HttpStatus.OK)
-    public Checking createChecking(Checking checking) {
+    public Checking createChecking(@RequestBody CreateCheckingDTO checking) {
+
         return checkingService.createChecking(checking);
     }
 

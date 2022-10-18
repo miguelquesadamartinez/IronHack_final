@@ -1,8 +1,5 @@
 package lab.miguel.code.controllers.DTOs;
 
-
-import lab.miguel.code.entity.Address;
-
 public class CreateAccountHolderDTO {
 
     private String name;

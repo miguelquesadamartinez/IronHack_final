@@ -1,14 +1,20 @@
 package lab.miguel.code;
 
 import lab.miguel.code.controllers.DTOs.CreateAccountHolderDTO;
+import lab.miguel.code.controllers.DTOs.CreateSavingsDTO;
 import lab.miguel.code.entity.AccountHolders;
 import lab.miguel.code.entity.Address;
+import lab.miguel.code.entity.Savings;
+import lab.miguel.code.enums.Status;
 import lab.miguel.code.services.AccountHolderService;
 import lab.miguel.code.services.AddressService;
+import lab.miguel.code.services.SavingsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+import java.time.LocalDate;
 
 @SpringBootApplication
 public class MiguelApplication implements CommandLineRunner {
@@ -16,6 +22,10 @@ public class MiguelApplication implements CommandLineRunner {
 	AddressService addressService;
 	@Autowired
 	AccountHolderService accountHolderService;
+
+	@Autowired
+	SavingsService savingsService;
+
 
 	// TODO: Las tablas ... me ha creado pocas, no ?
 
@@ -28,11 +38,18 @@ public class MiguelApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 
 		Address addr1 = addressService.createAddress(new Address("Velia, 81"));
-		addressService.createAddress(new Address("Papiol, 81"));
-		addressService.createAddress(new Address("Cuenca, 81"));
-		addressService.createAddress(new Address("Velia, 69"));
+		Address addr2 = addressService.createAddress(new Address("Papiol, 81"));
+		Address addr3 = addressService.createAddress(new Address("Cuenca, 81"));
+		Address addr4 = addressService.createAddress(new Address("Velia, 69"));
 
-		accountHolderService.createAccountHolder(new CreateAccountHolderDTO("Miguel", "18/04/1975", 1l, 1l));
+		AccountHolders accHold1 = accountHolderService.createAccountHolder(new CreateAccountHolderDTO("Miguel", "18/04/1975", 1l, 1l));
+		AccountHolders accHold2 = accountHolderService.createAccountHolder(new CreateAccountHolderDTO("Pepe", "18/04/1975", 1l, 1l));
+
+
+		//Savings savings1 = savingsService.createSavings(new CreateSavingsDTO(1l, 2l, LocalDate.now(), Status.ACTIVE, "12345", LocalDate.now(), 0.0025, 500));
+
+		//
+
 
 	}
 }
