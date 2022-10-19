@@ -42,18 +42,23 @@ public class AccountService implements AccountServiceInterface {
             throw new ResponseStatusException(HttpStatus.FORBIDDEN);
         }
 
+        // TODO: Esto no va
+
         Account originAccount = accountRepository.findById(transferDTO.getIdOrigin()).get();
         AccountHolders acc1 = null;
         AccountHolders acc2 = null;
 
-        if (!accountHolderRepository.findById(transferDTO.getIdHolderUno()).isPresent()
-            &&
-            !accountHolderRepository.findById(transferDTO.getIdHolderDos()).isPresent())
-            throw new RuntimeException("No hay a quien mandar");
+        System.out.println("getIdHolderUno: " + transferDTO.getIdHolderUno());
 
-        acc1 = accountHolderRepository.findById(transferDTO.getIdHolderUno()).get();
+        //if (!accountHolderRepository.findById(transferDTO.getIdHolderUno()).isPresent()
+        //)
+            //&&
+            //!accountHolderRepository.findById(transferDTO.getIdHolderDos()).isPresent())
+            //throw new RuntimeException("No hay a quien mandar");
 
-        acc2 = accountHolderRepository.findById(transferDTO.getIdHolderDos()).get();
+        //acc1 = accountHolderRepository.findById(transferDTO.getIdHolderUno()).get();
+
+        //acc2 = accountHolderRepository.findById(transferDTO.getIdHolderDos()).get();
 
 
         if (originAccount.getDoubleBalance() < transferDTO.getAmount())
@@ -62,8 +67,10 @@ public class AccountService implements AccountServiceInterface {
         if(accountHolderRepository.findById(transferDTO.getIdHolderUno()).isPresent()) {
             System.out.println("\n\nPaso 005: " + transferDTO.getIdHolderUno() + "\n\n");
 
-            // TODO: findByPrimaryOwnerID
+            // TODO: Peta
             Account workingUnoAccount = accountRepository.findByPrimaryOwner(transferDTO.getIdHolderUno());
+
+            System.out.println("\n\nPaso 006: " + transferDTO.getAmount() + "\n\n");
             workingUnoAccount.increaseAmount(transferDTO.getAmount());
 
         } else if (accountHolderRepository.findById(transferDTO.getIdHolderDos()).isPresent()){
