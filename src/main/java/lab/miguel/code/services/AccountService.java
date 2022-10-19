@@ -68,14 +68,14 @@ public class AccountService implements AccountServiceInterface {
             System.out.println("\n\nPaso 005: " + transferDTO.getIdHolderUno() + "\n\n");
 
             // TODO: Peta
-            Account workingUnoAccount = accountRepository.findByPrimaryOwner(transferDTO.getIdHolderUno());
+            Account workingUnoAccount = accountRepository.findByPrimaryOwnerId(transferDTO.getIdHolderUno());
 
             System.out.println("\n\nPaso 006: " + transferDTO.getAmount() + "\n\n");
             workingUnoAccount.increaseAmount(transferDTO.getAmount());
 
         } else if (accountHolderRepository.findById(transferDTO.getIdHolderDos()).isPresent()){
 
-            Account workingDosAccount = accountRepository.findBySecondaryOwner(transferDTO.getIdHolderDos());
+            Account workingDosAccount = accountRepository.findBySecondaryOwnerId(transferDTO.getIdHolderDos());
             workingDosAccount.increaseAmount(transferDTO.getAmount());
 
         } else {

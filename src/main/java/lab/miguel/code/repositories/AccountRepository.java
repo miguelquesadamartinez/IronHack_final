@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface AccountRepository extends JpaRepository<Account, Long> {
 
-    Account findByPrimaryOwner (Long id);
-    Account findBySecondaryOwner (Long id);
+    Account findByPrimaryOwnerId (Long id);
+    Account findBySecondaryOwnerId (Long id);
 }
