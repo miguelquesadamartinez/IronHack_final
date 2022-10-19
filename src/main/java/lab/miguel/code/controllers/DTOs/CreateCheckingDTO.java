@@ -21,8 +21,8 @@ public class CreateCheckingDTO {
 
     public CreateCheckingDTO(double balance, Long primaryOwner, Long secondaryOwner, LocalDate creationDate, Status status, String secretKey, LocalDate dateLastAction, double monthlyMaintenanceFee, double minimumBalance) {
         this.balance = balance;
-        primaryOwner = primaryOwner;
-        secondaryOwner = secondaryOwner;
+        this.primaryOwner = primaryOwner;
+        this.secondaryOwner = secondaryOwner;
         this.creationDate = creationDate;
         this.status = status;
         this.secretKey = secretKey;

@@ -52,16 +52,10 @@ public class MiguelApplication implements CommandLineRunner {
 		AccountHolders accHold7 = accountHolderService.createAccountHolder(new CreateAccountHolderDTO("Miguel", "18/04/1975", 1l, 1l));
 		AccountHolders accHold8 = accountHolderService.createAccountHolder(new CreateAccountHolderDTO("Pepe", "18/04/1975", 1l, 1l));
 
-		System.out.println(LocalDate.now());
-
-		//Checking checking1 = checkingService.createChecking(new CreateCheckingDTO(500, 9l, 10l, LocalDate.now(), Status.ACTIVE, "12345", LocalDate.now(), 10, 100));
-
-		Creditcard credit1 = creditcardService.createCreditcard(new CreateCreditCardDTO(5, 10l, 11l, LocalDate.now(), Status.ACTIVE, "12345", LocalDate.now(), 1000, 10));
-
-		Savings savings1 = savingsService.createSavings(new CreateSavingsDTO(500, 5l, 6l, LocalDate.now(), Status.ACTIVE, "12345", LocalDate.now(), 0.0025, 500));
-		Savings savings2 = savingsService.createSavings(new CreateSavingsDTO(500, 7l, 8l, LocalDate.now(), Status.ACTIVE, "12345", LocalDate.now(), 0.0025, 500));
-
-		StudentChecking student1 = studentService.createStudent(new CreateStudentDTO(500, 7l, 8l, LocalDate.now(), Status.ACTIVE, "12345", LocalDate.now()));
+		Checking checking1 = checkingService.createChecking(new CreateCheckingDTO(500, 5l, 6l, LocalDate.now(), Status.ACTIVE, "12345", LocalDate.now(), 10, 100));
+		Creditcard credit1 = creditcardService.createCreditcard(new CreateCreditCardDTO(500, 7l, 8l, LocalDate.now(), Status.ACTIVE, "12345", LocalDate.now(), 1000, 0.2));
+		Savings savings1 = savingsService.createSavings(new CreateSavingsDTO(500, 9l, 10l, LocalDate.now(), Status.ACTIVE, "12345", LocalDate.now(), 0.0025, 500));
+		StudentChecking student1 = studentService.createStudent(new CreateStudentDTO(500, 11l, 12l, LocalDate.now(), Status.ACTIVE, "12345", LocalDate.now()));
 
 	}
 }

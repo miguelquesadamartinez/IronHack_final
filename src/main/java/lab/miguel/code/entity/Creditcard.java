@@ -24,16 +24,17 @@ public class Creditcard extends Account {
 
     public Creditcard(Money balance, AccountHolders primaryOwner, AccountHolders secondaryOwner, LocalDate creationDate, Status status, String secretKey, LocalDate dateLastAction, double creditLimit, double interestRate) {
         super(balance, primaryOwner, secondaryOwner, creationDate, status, secretKey, dateLastAction);
-        if (interestRate <= 0.2 && interestRate > 0.1 ) {
+
+        if ( interestRate >= 0.1 && interestRate <= 0.2 ) {
             this.interestRate = interestRate;
-        } else if (interestRate < 0.1 || interestRate > 0.2) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
-        }
+        } else
+            throw new ResponseStatusException(HttpStatus.CONFLICT);
+
 
         if (creditLimit >= 100 && creditLimit <= 100000) {
             this.creditLimit = creditLimit;
         } else {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+            throw new ResponseStatusException(HttpStatus.LENGTH_REQUIRED);
         };
     }
 
