@@ -42,7 +42,7 @@ public class AccountService implements AccountServiceInterface {
             throw new ResponseStatusException(HttpStatus.FORBIDDEN);
         }
 
-        // TODO: Esto no va
+        // TODO: Esto ??
 
         Account originAccount = accountRepository.findById(transferDTO.getIdOrigin()).get();
         AccountHolders acc1 = null;
@@ -65,17 +65,10 @@ public class AccountService implements AccountServiceInterface {
             throw new RuntimeException("Cantidad superior a balance");
 
         if(accountHolderRepository.findById(transferDTO.getIdHolderUno()).isPresent()) {
-            System.out.println("\n\nPaso 005: " + transferDTO.getIdHolderUno() + "\n\n");
-
-            // TODO: Peta
             Account workingUnoAccount = accountRepository.findByPrimaryOwnerId(transferDTO.getIdHolderUno());
-
-            System.out.println("\n\nPaso 006: " + transferDTO.getAmount() + "\n\n");
             workingUnoAccount.increaseAmount(transferDTO.getAmount());
             accountRepository.save(workingUnoAccount);
-
         } else if (accountHolderRepository.findById(transferDTO.getIdHolderDos()).isPresent()){
-
             Account workingDosAccount = accountRepository.findBySecondaryOwnerId(transferDTO.getIdHolderDos());
             workingDosAccount.increaseAmount(transferDTO.getAmount());
             accountRepository.save(workingDosAccount);

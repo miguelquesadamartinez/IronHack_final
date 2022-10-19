@@ -33,9 +33,6 @@ public class MiguelApplication implements CommandLineRunner {
 	@Autowired
 	RoleRepository roleRepository;
 
-
-	// TODO: Las tablas ... me ha creado pocas, no ?
-
 	public static void main(String[] args) {
 
 		SpringApplication.run(MiguelApplication.class, args);
@@ -63,9 +60,7 @@ public class MiguelApplication implements CommandLineRunner {
 		Savings savings1 = savingsService.createSavings(new CreateSavingsDTO(500, 9l, 10l, LocalDate.now(), Status.ACTIVE, "12345", LocalDate.now(), 0.0025, 500));
 		StudentChecking student1 = studentService.createStudent(new CreateStudentDTO(500, 11l, 12l, LocalDate.now(), Status.ACTIVE, "12345", LocalDate.now()));
 
-
 		User usuario1 = userRepository.save(new User("miguel", "1804"));
-
 		Role rol1 = roleRepository.save(new Role("ADMIN", usuario1));
 	}
 }
