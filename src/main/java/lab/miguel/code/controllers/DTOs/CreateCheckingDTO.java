@@ -7,8 +7,8 @@ import java.time.LocalDate;
 public class CreateCheckingDTO {
 
     private double balance;
-    private Long PrimaryOwner;
-    private Long SecondaryOwner;
+    private Long primaryOwner;
+    private Long secondaryOwner;
     private LocalDate creationDate;
     private Status status;
     private String secretKey;
@@ -21,8 +21,8 @@ public class CreateCheckingDTO {
 
     public CreateCheckingDTO(double balance, Long primaryOwner, Long secondaryOwner, LocalDate creationDate, Status status, String secretKey, LocalDate dateLastAction, double monthlyMaintenanceFee, double minimumBalance) {
         this.balance = balance;
-        PrimaryOwner = primaryOwner;
-        SecondaryOwner = secondaryOwner;
+        primaryOwner = primaryOwner;
+        secondaryOwner = secondaryOwner;
         this.creationDate = creationDate;
         this.status = status;
         this.secretKey = secretKey;
@@ -43,19 +43,19 @@ public class CreateCheckingDTO {
     }
 
     public Long getPrimaryOwner() {
-        return PrimaryOwner;
+        return primaryOwner;
     }
 
     public void setPrimaryOwner(Long primaryOwner) {
-        PrimaryOwner = primaryOwner;
+        primaryOwner = primaryOwner;
     }
 
     public Long getSecondaryOwner() {
-        return SecondaryOwner;
+        return secondaryOwner;
     }
 
     public void setSecondaryOwner(Long secondaryOwner) {
-        SecondaryOwner = secondaryOwner;
+        secondaryOwner = secondaryOwner;
     }
 
     public LocalDate getCreationDate() {

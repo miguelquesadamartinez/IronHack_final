@@ -9,6 +9,6 @@ public interface AccountRepository extends JpaRepository<Account, Long> {
 
 
     // TODO: Peta
-    Account findByPrimaryOwnerId (Long id);
-    //Account findBySecondaryOwnerId (Long id);
+    Account findByPrimaryOwner (Long id);
+    Account findBySecondaryOwner (Long id);
 }

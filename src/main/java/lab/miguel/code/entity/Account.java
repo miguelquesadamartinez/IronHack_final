@@ -3,14 +3,11 @@ package lab.miguel.code.entity;
 import lab.miguel.code.enums.Status;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
-import java.util.List;
 
 @Entity
 @Getter
@@ -26,10 +23,10 @@ public abstract class Account {
     private Money balance;
     @ManyToOne
     @JoinColumn(name = "primary_owner_id")
-    private AccountHolders PrimaryOwner;
+    private AccountHolders primaryOwner;
     @ManyToOne
     @JoinColumn(name = "secondary_owner_id")
-    private AccountHolders SecondaryOwner;
+    private AccountHolders secondaryOwner;
 
     //private double penaltyFee;
 
@@ -64,8 +61,8 @@ public abstract class Account {
 
     public Account(Money balance, AccountHolders primaryOwner, AccountHolders secondaryOwner, LocalDate creationDate, Status status, String secretKey, LocalDate dateLastAction) {
         this.balance = balance;
-        PrimaryOwner = primaryOwner;
-        SecondaryOwner = secondaryOwner;
+        this.primaryOwner = primaryOwner;
+        this.secondaryOwner = secondaryOwner;
         this.creationDate = creationDate;
         this.status = status;
         this.secretKey = secretKey;

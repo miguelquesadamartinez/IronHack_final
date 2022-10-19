@@ -63,13 +63,13 @@ public class AccountService implements AccountServiceInterface {
             System.out.println("\n\nPaso 005: " + transferDTO.getIdHolderUno() + "\n\n");
 
             // TODO: findByPrimaryOwnerID
-            //Account workingUnoAccount = accountRepository.findByPrimaryOwnerId(transferDTO.getIdHolderUno());
-            //workingUnoAccount.increaseAmount(transferDTO.getAmount());
+            Account workingUnoAccount = accountRepository.findByPrimaryOwner(transferDTO.getIdHolderUno());
+            workingUnoAccount.increaseAmount(transferDTO.getAmount());
 
         } else if (accountHolderRepository.findById(transferDTO.getIdHolderDos()).isPresent()){
 
-            //Account workingDosAccount = accountRepository.findBySecondaryOwnerId(transferDTO.getIdHolderDos());
-            //workingDosAccount.increaseAmount(transferDTO.getAmount());
+            Account workingDosAccount = accountRepository.findBySecondaryOwner(transferDTO.getIdHolderDos());
+            workingDosAccount.increaseAmount(transferDTO.getAmount());
 
         } else {
             throw new RuntimeException("Pues como no me digas a quien lo mandas, vamos bien");

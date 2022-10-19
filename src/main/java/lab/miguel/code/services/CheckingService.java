@@ -36,12 +36,7 @@ public class CheckingService implements CheckingServiceInterface {
         // TODO: Lo de la cuenta por edad
 
         AccountHolders accHold1 = accountHolderRepository.findById(checkingDTO.getPrimaryOwner()).get();
-        AccountHolders accHold2 = null;
-        if(checkingDTO.getSecondaryOwner() != null){
-            accHold2 = accountHolderRepository.findById(checkingDTO.getSecondaryOwner()).get();
-        }
-
-
+        AccountHolders accHold2 = accountHolderRepository.findById(checkingDTO.getSecondaryOwner()).get();
 
         Money balance = new Money(new BigDecimal(checkingDTO.getBalance()));
 

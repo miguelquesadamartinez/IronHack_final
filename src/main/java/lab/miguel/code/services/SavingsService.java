@@ -31,8 +31,6 @@ public class SavingsService implements SavingsServiceInterface {
 
         Money balance = new Money(new BigDecimal(savingsDTO.getBalance()));
 
-
-
         Savings tempSavings = new Savings(balance, accHold1, accHold2, LocalDate.now(), Status.ACTIVE, savingsDTO.getSecretKey(), LocalDate.now(), savingsDTO.getInterestRate(), savingsDTO.getMinimumBalance());
 
         return savingsRepository.save(tempSavings);

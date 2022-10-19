@@ -8,8 +8,8 @@ public class CreateCreditCardDTO {
 
 
     private double balance;
-    private Long PrimaryOwner;
-    private Long SecondaryOwner;
+    private Long primaryOwner;
+    private Long secondaryOwner;
     private LocalDate creationDate;
     private Status status;
     private String secretKey;
@@ -25,8 +25,8 @@ public class CreateCreditCardDTO {
 
     public CreateCreditCardDTO(double balance, Long primaryOwner, Long secondaryOwner, LocalDate creationDate, Status status, String secretKey, LocalDate dateLastAction, double creditLimit, double interestRate) {
         this.balance = balance;
-        PrimaryOwner = primaryOwner;
-        SecondaryOwner = secondaryOwner;
+        this.primaryOwner = primaryOwner;
+        this.secondaryOwner = secondaryOwner;
         this.creationDate = creationDate;
         this.status = status;
         this.secretKey = secretKey;
@@ -44,19 +44,19 @@ public class CreateCreditCardDTO {
     }
 
     public Long getPrimaryOwner() {
-        return PrimaryOwner;
+        return primaryOwner;
     }
 
     public void setPrimaryOwner(Long primaryOwner) {
-        PrimaryOwner = primaryOwner;
+        this.primaryOwner = primaryOwner;
     }
 
     public Long getSecondaryOwner() {
-        return SecondaryOwner;
+        return secondaryOwner;
     }
 
     public void setSecondaryOwner(Long secondaryOwner) {
-        SecondaryOwner = secondaryOwner;
+        this.secondaryOwner = secondaryOwner;
     }
 
     public LocalDate getCreationDate() {
