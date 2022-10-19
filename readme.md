@@ -1,10 +1,13 @@
 
 #Testing
 
-http://localhost:8080/create-address
+user: miguel
+pass: 1804
+
+http://localhost:8080/transfer-to-account
 {
-    "address": "Direccion"
+"idOrigin": 14,
+"amount": 100,
+"idHolderUno": 5,
+"idHolderDos": 16
 }
-
-http://localhost:8080/create-account-holder
-

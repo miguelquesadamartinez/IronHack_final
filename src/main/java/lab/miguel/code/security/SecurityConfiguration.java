@@ -36,7 +36,7 @@ public class SecurityConfiguration {
         httpSecurity.httpBasic();
 
         httpSecurity.authorizeRequests()
-                .mvcMatchers(HttpMethod.GET, "/get-account-balance").hasAnyRole("USER")
+                //.mvcMatchers(HttpMethod.GET, "/get-account-balance").hasAnyRole("ADMIN")
                 .mvcMatchers(HttpMethod.GET,"/transfer-to-account/**").hasRole("ADMIN")
                 .anyRequest().permitAll();
 

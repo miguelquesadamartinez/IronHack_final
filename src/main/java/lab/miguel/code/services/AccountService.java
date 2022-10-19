@@ -72,17 +72,20 @@ public class AccountService implements AccountServiceInterface {
 
             System.out.println("\n\nPaso 006: " + transferDTO.getAmount() + "\n\n");
             workingUnoAccount.increaseAmount(transferDTO.getAmount());
+            accountRepository.save(workingUnoAccount);
 
         } else if (accountHolderRepository.findById(transferDTO.getIdHolderDos()).isPresent()){
 
             Account workingDosAccount = accountRepository.findBySecondaryOwnerId(transferDTO.getIdHolderDos());
             workingDosAccount.increaseAmount(transferDTO.getAmount());
+            accountRepository.save(workingDosAccount);
 
         } else {
             throw new RuntimeException("Pues como no me digas a quien lo mandas, vamos bien");
         }
 
         originAccount.decreaseAmoutn(transferDTO.getAmount());
+        accountRepository.save(originAccount);
 
         System.out.println("\n\nSale en Service - transferToAccount\n\n");
     }

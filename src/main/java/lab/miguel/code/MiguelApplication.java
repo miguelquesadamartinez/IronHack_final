@@ -4,6 +4,8 @@ import lab.miguel.code.controllers.DTOs.*;
 import lab.miguel.code.entity.*;
 import lab.miguel.code.enums.Status;
 import lab.miguel.code.repositories.CheckingRepository;
+import lab.miguel.code.repositories.RoleRepository;
+import lab.miguel.code.repositories.UserRepository;
 import lab.miguel.code.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -26,6 +28,10 @@ public class MiguelApplication implements CommandLineRunner {
 	CreditcardService creditcardService;
 	@Autowired
 	StudentService studentService;
+	@Autowired
+	UserRepository userRepository;
+	@Autowired
+	RoleRepository roleRepository;
 
 
 	// TODO: Las tablas ... me ha creado pocas, no ?
@@ -57,5 +63,9 @@ public class MiguelApplication implements CommandLineRunner {
 		Savings savings1 = savingsService.createSavings(new CreateSavingsDTO(500, 9l, 10l, LocalDate.now(), Status.ACTIVE, "12345", LocalDate.now(), 0.0025, 500));
 		StudentChecking student1 = studentService.createStudent(new CreateStudentDTO(500, 11l, 12l, LocalDate.now(), Status.ACTIVE, "12345", LocalDate.now()));
 
+
+		User usuario1 = userRepository.save(new User("miguel", "1804"));
+
+		Role rol1 = roleRepository.save(new Role("ADMIN", usuario1));
 	}
 }
