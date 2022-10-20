@@ -3,10 +3,13 @@ package lab.miguel.code.entity;
 import lab.miguel.code.enums.Status;
 import lombok.Getter;
 import lombok.Setter;
+import net.bytebuddy.asm.Advice;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 
 @Entity
@@ -42,9 +45,9 @@ public abstract class Account {
 
     public static Long getAge(String fecha){
 
-        LocalDate start = LocalDate.of(1996, 2, 29);
-        LocalDate end = LocalDate.now();
-        Long years = ChronoUnit.YEARS.between(start, end);
+        LocalDate start = LocalDate.parse(fecha);
+
+        Long years = ChronoUnit.YEARS.between(start, LocalDate.now());
 
         return years;
     }

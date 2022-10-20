@@ -37,7 +37,7 @@ public class SecurityConfiguration {
 
         httpSecurity.authorizeRequests()
                 //.mvcMatchers(HttpMethod.GET, "/get-account-balance/**").hasAnyRole("ADMIN")
-                .mvcMatchers(HttpMethod.GET,"/transfer-to-account").hasRole("ADMIN")
+                .mvcMatchers(HttpMethod.POST,"/transfer-to-account").hasRole("ADMIN")
                 .anyRequest().permitAll();
 
         httpSecurity.csrf().disable();

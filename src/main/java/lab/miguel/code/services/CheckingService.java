@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 import javax.persistence.AttributeOverride;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.Optional;
 
 @Service
@@ -37,6 +38,11 @@ public class CheckingService implements CheckingServiceInterface {
 
         AccountHolders accHold1 = accountHolderRepository.findById(checkingDTO.getPrimaryOwner()).get();
         AccountHolders accHold2 = accountHolderRepository.findById(checkingDTO.getSecondaryOwner()).get();
+
+        if (ChronoUnit.YEARS.between(LocalDate.parse(accHold1.getDateOFBirth()), LocalDate.now()) < 23 ){
+            throw new RuntimeException("Es muy joven");
+        }
+
 
         Money balance = new Money(new BigDecimal(checkingDTO.getBalance()));
 

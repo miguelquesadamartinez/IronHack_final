@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.time.LocalDate;
 
@@ -32,6 +33,8 @@ public class MiguelApplication implements CommandLineRunner {
 	UserRepository userRepository;
 	@Autowired
 	RoleRepository roleRepository;
+	@Autowired
+	PasswordEncoder passwordEncoder;
 
 	public static void main(String[] args) {
 
@@ -46,21 +49,21 @@ public class MiguelApplication implements CommandLineRunner {
 		Address addr3 = addressService.createAddress(new Address("Cuenca, 81"));
 		Address addr4 = addressService.createAddress(new Address("Velia, 69"));
 
-		AccountHolders accHold1 = accountHolderService.createAccountHolder(new CreateAccountHolderDTO("Miguel", "18/04/1975", 1l, 1l));
-		AccountHolders accHold2 = accountHolderService.createAccountHolder(new CreateAccountHolderDTO("Pepe", "18/04/1975", 1l, 1l));
-		AccountHolders accHold3 = accountHolderService.createAccountHolder(new CreateAccountHolderDTO("Miguel", "18/04/1975", 1l, 1l));
-		AccountHolders accHold4 = accountHolderService.createAccountHolder(new CreateAccountHolderDTO("Pepe", "18/04/1975", 1l, 1l));
-		AccountHolders accHold5 = accountHolderService.createAccountHolder(new CreateAccountHolderDTO("Miguel", "18/04/1975", 1l, 1l));
-		AccountHolders accHold6 = accountHolderService.createAccountHolder(new CreateAccountHolderDTO("Pepe", "18/04/1975", 1l, 1l));
-		AccountHolders accHold7 = accountHolderService.createAccountHolder(new CreateAccountHolderDTO("Miguel", "18/04/1975", 1l, 1l));
-		AccountHolders accHold8 = accountHolderService.createAccountHolder(new CreateAccountHolderDTO("Pepe", "18/04/1975", 1l, 1l));
+		AccountHolders accHold1 = accountHolderService.createAccountHolder(new CreateAccountHolderDTO("Miguel", "1975-04-18", 1l, 1l));
+		AccountHolders accHold2 = accountHolderService.createAccountHolder(new CreateAccountHolderDTO("Pepe", "2000-02-01", 1l, 1l));
+		AccountHolders accHold3 = accountHolderService.createAccountHolder(new CreateAccountHolderDTO("Miguel", "1975-04-18", 1l, 1l));
+		AccountHolders accHold4 = accountHolderService.createAccountHolder(new CreateAccountHolderDTO("Pepe", "1975-04-18", 1l, 1l));
+		AccountHolders accHold5 = accountHolderService.createAccountHolder(new CreateAccountHolderDTO("Miguel", "1975-04-18", 1l, 1l));
+		AccountHolders accHold6 = accountHolderService.createAccountHolder(new CreateAccountHolderDTO("Pepe", "1975-04-18", 1l, 1l));
+		AccountHolders accHold7 = accountHolderService.createAccountHolder(new CreateAccountHolderDTO("Miguel", "1975-04-18", 1l, 1l));
+		AccountHolders accHold8 = accountHolderService.createAccountHolder(new CreateAccountHolderDTO("Pepe", "1975-04-18", 1l, 1l));
 
 		Checking checking1 = checkingService.createChecking(new CreateCheckingDTO(500, 5l, 6l, LocalDate.now(), Status.ACTIVE, "12345", LocalDate.now(), 10, 100));
 		Creditcard credit1 = creditcardService.createCreditcard(new CreateCreditCardDTO(500, 7l, 8l, LocalDate.now(), Status.ACTIVE, "12345", LocalDate.now(), 1000, 0.2));
 		Savings savings1 = savingsService.createSavings(new CreateSavingsDTO(500, 9l, 10l, LocalDate.now(), Status.ACTIVE, "12345", LocalDate.now(), 0.0025, 500));
 		StudentChecking student1 = studentService.createStudent(new CreateStudentDTO(500, 11l, 12l, LocalDate.now(), Status.ACTIVE, "12345", LocalDate.now()));
 
-		User usuario1 = userRepository.save(new User("miguel", "1804"));
-		Role rol1 = roleRepository.save(new Role("ADMIN", usuario1));
+		User usuario1 = userRepository.save(new User("miguel", passwordEncoder.encode("12345")));
+		roleRepository.save(new Role("ADMIN", usuario1));
 	}
 }
