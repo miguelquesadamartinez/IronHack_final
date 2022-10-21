@@ -63,6 +63,8 @@ public class MiguelApplication implements CommandLineRunner {
 		Savings savings1 = savingsService.createSavings(new CreateSavingsDTO(2500, 9l, 10l, LocalDate.now(), Status.ACTIVE, "12345", LocalDate.now(), 0.0025, 500));
 		StudentChecking student1 = studentService.createStudent(new CreateStudentDTO(3500, 11l, 12l, LocalDate.now(), Status.ACTIVE, "12345", LocalDate.now()));
 
+		ThirdParty thirdParty1 = new ThirdParty("aaaaaaa", "Miguel");
+
 		User usuario1 = userRepository.save(new User("miguel", passwordEncoder.encode("12345")));
 		roleRepository.save(new Role("ADMIN", usuario1));
 	}
