@@ -23,8 +23,14 @@ public class CreditcardService implements CreditcardServiceInterface {
     @Override
     public Creditcard createCreditcard(CreateCreditCardDTO createCreditCardDTO) {
 
+
+
+
         AccountHolders accHold1 = accountHolderRepository.findById(createCreditCardDTO.getPrimaryOwner()).get();
         AccountHolders accHold2 = accountHolderRepository.findById(createCreditCardDTO.getSecondaryOwner()).get();
+
+
+
 
         Money balance = new Money(new BigDecimal(createCreditCardDTO.getBalance()));
 

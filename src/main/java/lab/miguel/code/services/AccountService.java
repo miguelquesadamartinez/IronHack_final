@@ -39,7 +39,7 @@ public class AccountService implements AccountServiceInterface {
     public void transferToAccount(TransferDTO transferDTO) {
 
         if(transferDTO.getAmount() == 0){
-            throw new ResponseStatusException(HttpStatus.FORBIDDEN);
+            throw new RuntimeException("No amount enough");
         }
 
         // TODO: Esto ??
@@ -50,15 +50,15 @@ public class AccountService implements AccountServiceInterface {
 
         System.out.println("getIdHolderUno: " + transferDTO.getIdHolderUno());
 
-        //if (!accountHolderRepository.findById(transferDTO.getIdHolderUno()).isPresent()
-        //)
-            //&&
-            //!accountHolderRepository.findById(transferDTO.getIdHolderDos()).isPresent())
-            //throw new RuntimeException("No hay a quien mandar");
+        if (!accountHolderRepository.findById(transferDTO.getIdHolderUno()).isPresent()
+            &&
+            !accountHolderRepository.findById(transferDTO.getIdHolderDos()).isPresent())
+            throw new RuntimeException("No hay a quien mandar");
 
-        //acc1 = accountHolderRepository.findById(transferDTO.getIdHolderUno()).get();
+        acc1 = accountHolderRepository.findById(transferDTO.getIdHolderUno()).get();
 
-        //acc2 = accountHolderRepository.findById(transferDTO.getIdHolderDos()).get();
+        if(accountHolderRepository.findById(transferDTO.getIdHolderDos()).isPresent())
+            acc2 = accountHolderRepository.findById(transferDTO.getIdHolderDos()).get();
 
 
         if (originAccount.getDoubleBalance() < transferDTO.getAmount())
