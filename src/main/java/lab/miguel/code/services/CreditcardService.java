@@ -23,14 +23,27 @@ public class CreditcardService implements CreditcardServiceInterface {
     @Override
     public Creditcard createCreditcard(CreateCreditCardDTO createCreditCardDTO) {
 
+        AccountHolders accHold1 = null;
+        AccountHolders accHold2 = null;
+
+        if (!accountHolderRepository.findById(createCreditCardDTO.getPrimaryOwner()).isPresent()
+                &&
+                !accountHolderRepository.findById(createCreditCardDTO.getSecondaryOwner()).isPresent())
+            throw new RuntimeException("No hay a owner");
+
+        System.err.println("ENTRo createCreditcard");
+
+        accHold1 = accountHolderRepository.findById(createCreditCardDTO.getPrimaryOwner()).get();
+
+        System.err.println("PASO 1");
+
+        if(accountHolderRepository.findById(createCreditCardDTO.getSecondaryOwner()).isPresent()) {
+            System.err.println("PASO 2");
+            accHold2 = accountHolderRepository.findById(createCreditCardDTO.getSecondaryOwner()).get();
+        }
 
 
-
-        AccountHolders accHold1 = accountHolderRepository.findById(createCreditCardDTO.getPrimaryOwner()).get();
-        AccountHolders accHold2 = accountHolderRepository.findById(createCreditCardDTO.getSecondaryOwner()).get();
-
-
-
+        // TODO: Tal vez
 
         Money balance = new Money(new BigDecimal(createCreditCardDTO.getBalance()));
 
