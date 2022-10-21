@@ -15,6 +15,7 @@ import java.time.temporal.ChronoUnit;
 @Entity
 @Getter
 @Setter
+@Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

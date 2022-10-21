@@ -6,10 +6,7 @@ import lab.miguel.code.entity.StudentChecking;
 import lab.miguel.code.services.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class StudentController implements StudentControllerInterface {
@@ -19,7 +16,7 @@ public class StudentController implements StudentControllerInterface {
 
     @PostMapping("/create-student")
     @ResponseStatus(HttpStatus.OK)
-    public StudentChecking createStudent(@RequestParam CreateStudentDTO checking) {
+    public StudentChecking createStudent(@RequestBody CreateStudentDTO checking) {
         return studentService.createStudent(checking);
     }
 }
