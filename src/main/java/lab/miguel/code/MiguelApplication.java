@@ -5,6 +5,7 @@ import lab.miguel.code.entity.*;
 import lab.miguel.code.enums.Status;
 import lab.miguel.code.repositories.CheckingRepository;
 import lab.miguel.code.repositories.RoleRepository;
+import lab.miguel.code.repositories.ThirdPartyRepository;
 import lab.miguel.code.repositories.UserRepository;
 import lab.miguel.code.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,9 +31,12 @@ public class MiguelApplication implements CommandLineRunner {
 	@Autowired
 	StudentService studentService;
 	@Autowired
+	ThirdPartyService thirdPartyService;
+	@Autowired
 	UserRepository userRepository;
 	@Autowired
 	RoleRepository roleRepository;
+
 	@Autowired
 	PasswordEncoder passwordEncoder;
 
@@ -63,7 +67,7 @@ public class MiguelApplication implements CommandLineRunner {
 		Savings savings1 = savingsService.createSavings(new CreateSavingsDTO(2500, 9l, 10l, LocalDate.now(), Status.ACTIVE, "12345", LocalDate.now(), 0.0025, 500));
 		StudentChecking student1 = studentService.createStudent(new CreateStudentDTO(3500, 11l, 12l, LocalDate.now(), Status.ACTIVE, "12345", LocalDate.now()));
 
-		ThirdParty thirdParty1 = new ThirdParty("aaaaaaa", "Miguel");
+		ThirdParty thirdParty1 = thirdPartyService.createThirdParty(new ThirdPartyDTO( "aaaaaaa", "Miguel", 100l));
 
 		User usuario1 = userRepository.save(new User("miguel", passwordEncoder.encode("12345")));
 		roleRepository.save(new Role("ADMIN", usuario1));

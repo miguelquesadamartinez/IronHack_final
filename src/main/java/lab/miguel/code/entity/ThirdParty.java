@@ -1,6 +1,9 @@
 package lab.miguel.code.entity;
 
+import lab.miguel.code.controllers.DTOs.ThirdPartyDTO;
+
 import javax.persistence.*;
+import java.math.BigDecimal;
 
 @Entity
 public class ThirdParty {
@@ -12,12 +15,22 @@ public class ThirdParty {
     private String hashedKey;
     private String name;
 
-    public ThirdParty(String hashedKey, String name) {
-         this.hashedKey = hashedKey;
-        this.name = name;
+    private Money balance;
+
+    public void increaseAmount(double amount){
+        this.balance.increaseAmount(new Money(BigDecimal.valueOf(amount)));
+    }
+    public void decreaseAmoutn(double amount){
+        this.balance.decreaseAmount(new Money(BigDecimal.valueOf(amount)));
     }
 
     public ThirdParty() {
+    }
+
+    public ThirdParty(String hashedKey, String name, Money balance) {
+        this.hashedKey = hashedKey;
+        this.name = name;
+        this.balance = balance;
     }
 
     public Long getId() {
@@ -42,5 +55,13 @@ public class ThirdParty {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Money getBalance() {
+        return balance;
+    }
+
+    public void setBalance(Money balance) {
+        this.balance = balance;
     }
 }
