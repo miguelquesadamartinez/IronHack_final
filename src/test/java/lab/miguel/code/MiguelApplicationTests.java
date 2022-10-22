@@ -1,5 +1,7 @@
 package lab.miguel.code;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lab.miguel.code.controllers.DTOs.*;
 import lab.miguel.code.entity.*;
 import lab.miguel.code.enums.Status;
@@ -10,11 +12,19 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.MediaType;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.web.context.WebApplicationContext;
 
 import javax.swing.text.html.Option;
 import java.awt.dnd.DragSourceMotionListener;
 import java.time.LocalDate;
 import java.util.Optional;
+
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
 class MiguelApplicationTests {
@@ -49,9 +59,17 @@ class MiguelApplicationTests {
 	ThirdPartyService thirdPartyService;
 	@Autowired
 	ThirdPartyRepository thirdPartyRepository;
+	@Autowired
+	private WebApplicationContext webApplicationContext;
+
+	private MockMvc mockMvc;
+	private final ObjectMapper objectMapper = new ObjectMapper();
+
 
 	@BeforeEach
 	void set_up(){
+		mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
+
 		addressRepository.save(new Address("Velia, 81"));
 		addressRepository.save(new Address("Velia, 69"));
 
@@ -59,6 +77,24 @@ class MiguelApplicationTests {
 		accountHolderService.createAccountHolder(new CreateAccountHolderDTO("Pepe", "2000-02-01", 1l, 1l));
 
 	}
+
+	@Test
+	void mock_create_address() throws Exception{
+		Address addr1 = new Address("Velia, 81");
+
+		String body = objectMapper.writeValueAsString(addr1);
+
+		MvcResult mvcResult = mockMvc.perform(post("/create-address").content(body).
+				contentType(MediaType.APPLICATION_JSON)).andExpect(status().isCreated()).andReturn();
+
+		ObjectMapper mapper = new ObjectMapper();
+		JsonNode tree = mapper.readTree(mvcResult.getResponse().getContentAsString());
+		JsonNode node = tree.get("id");
+		Long id = node.asLong();
+
+		Assertions.assertTrue(addressRepository.findById(id).isPresent());
+	}
+
 
 	@Test
 	void create_address() {
@@ -144,9 +180,6 @@ class MiguelApplicationTests {
 		Assertions.assertEquals(1600, accountService.getBalance(14l).getBalance());
 	}
 
-	@Test
-	void transfer_third_party(){
-		// Este lleva header
-	}
+
 
 }

@@ -15,7 +15,7 @@ public class AddressController implements AddressControllerInterface {
     AddressService addressService;
 
     @PostMapping("/create-address")
-    @ResponseStatus(HttpStatus.OK)
+    @ResponseStatus(HttpStatus.CREATED)
     public Address createAddress(@RequestBody Address address){
         return addressService.createAddress(address);
     }
