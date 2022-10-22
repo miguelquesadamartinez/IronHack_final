@@ -25,3 +25,9 @@ http://localhost:8080/create-credit-card
 "creditLimit": 1000,
 "interestRate": 0.2
 }
+
+http://localhost:8080/pay-third-party
+hashedKey header -> aaaaaaa
+{
+"amount": 150
+}
