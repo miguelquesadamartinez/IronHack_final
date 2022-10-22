@@ -19,7 +19,7 @@ public class CheckingController implements CheckingControllerInterfce {
     CheckingService checkingService;
 
     @PostMapping("/create-checking")
-    @ResponseStatus(HttpStatus.OK)
+    @ResponseStatus(HttpStatus.CREATED)
     public Checking createChecking(@RequestBody CreateCheckingDTO createCheckingDTO) {
         System.err.println("ANTES DE EL FIND createChecking");
         System.err.println(createCheckingDTO.getPrimaryOwner());

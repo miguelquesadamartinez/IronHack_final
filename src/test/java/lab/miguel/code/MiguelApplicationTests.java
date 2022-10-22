@@ -2,6 +2,8 @@ package lab.miguel.code;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import lab.miguel.code.controllers.DTOs.*;
 import lab.miguel.code.entity.*;
 import lab.miguel.code.enums.Status;
@@ -95,7 +97,22 @@ class MiguelApplicationTests {
 		Assertions.assertTrue(addressRepository.findById(id).isPresent());
 	}
 
+	@Test
+	void mock_create_checking() throws Exception{
+		CreateCheckingDTO dto = new CreateCheckingDTO(500, 5l, 6l, LocalDate.now(), Status.ACTIVE, "12345", LocalDate.now(), 10, 100);
 
+		String body = objectMapper.writeValueAsString(dto);
+
+		MvcResult mvcResult = mockMvc.perform(post("/create-checking").content(body).
+				contentType(MediaType.APPLICATION_JSON)).andExpect(status().isCreated()).andReturn();
+
+		ObjectMapper mapper = new ObjectMapper();
+		JsonNode tree = mapper.readTree(mvcResult.getResponse().getContentAsString());
+		JsonNode node = tree.get("id");
+		Long id = node.asLong();
+
+		Assertions.assertTrue(checkingRepository.findById(id).isPresent());
+	}
 	@Test
 	void create_address() {
 		Address address = addressRepository.save(new Address("Velia, 81"));
