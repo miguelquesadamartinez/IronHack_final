@@ -18,6 +18,15 @@ public class ThirdPartyService implements ThirdPartyServiceInterface {
 
     public ThirdParty createThirdParty(ThirdPartyDTO thirdPartyDTO) {
 
-        return thirdPartyRepository.save(new ThirdParty(thirdPartyDTO.getHashedKey(), thirdPartyDTO.getName(), new Money(new BigDecimal(thirdPartyDTO.getBalance()))));
+        return thirdPartyRepository.save(new ThirdParty(thirdPartyDTO.getHashedKey(), thirdPartyDTO.getName(), new Money(new BigDecimal(thirdPartyDTO.getAmount()))));
+    }
+
+    public ThirdParty transferToThirdParty (String hashedKey, double amount){
+        ThirdParty thirdParty1 = thirdPartyRepository.findByHashedKey(hashedKey);
+
+        thirdParty1.getBalance().increaseAmount(new BigDecimal(amount));
+
+        return thirdPartyRepository.save(thirdParty1);
+
     }
 }
