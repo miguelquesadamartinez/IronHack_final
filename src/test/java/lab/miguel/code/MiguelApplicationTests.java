@@ -99,7 +99,7 @@ class MiguelApplicationTests {
 
 	@Test
 	void mock_create_checking() throws Exception{
-		CreateCheckingDTO dto = new CreateCheckingDTO(500, 5l, 6l, LocalDate.now(), Status.ACTIVE, "12345", LocalDate.now(), 10, 100);
+		CreateCheckingDTO dto = new CreateCheckingDTO(500, 5l, 6l, Status.ACTIVE, "12345",  10, 100);
 
 		String body = objectMapper.writeValueAsString(dto);
 
@@ -137,7 +137,7 @@ class MiguelApplicationTests {
 		AccountHolders acc1 = accountHolderService.createAccountHolder(new CreateAccountHolderDTO("Miguel", "1975-04-18", addr1.getId(), addr2.getId()));
 		AccountHolders acc2 = accountHolderService.createAccountHolder(new CreateAccountHolderDTO("Pepe", "2000-02-01", addr1.getId(), addr2.getId()));
 
-		Checking checking = checkingService.createChecking(new CreateCheckingDTO(500, acc1.getId(), acc2.getId(), LocalDate.now(), Status.ACTIVE, "12345", LocalDate.now(), 10, 100));
+		Checking checking = checkingService.createChecking(new CreateCheckingDTO(500, acc1.getId(), acc2.getId(), Status.ACTIVE, "12345", 10, 100));
 		Optional<Checking> chkOpt = checkingRepository.findById(checking.getId());
 		Assertions.assertTrue(chkOpt.isPresent());
 	}

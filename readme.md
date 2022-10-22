@@ -48,6 +48,6 @@ http://localhost:8080/pay-third-party
 }
 
 http://localhost:8080/get-fraud
-
+Devuelve cuentas con mas de dos transaccion por dia
 
 * More at: http://localhost:8080/swagger-ui

@@ -73,6 +73,7 @@ public class MiguelApplication implements CommandLineRunner {
 
 		Transactions trans1 = transactionsRepository.save(new Transactions(13l, LocalDate.now(), new Money(BigDecimal.valueOf(110))));
 		Transactions trans2 = transactionsRepository.save(new Transactions(13l, LocalDate.now(), new Money(BigDecimal.valueOf(110))));
+		Transactions trans3 = transactionsRepository.save(new Transactions(13l, LocalDate.now(), new Money(BigDecimal.valueOf(110))));
 
 		User admin = userRepository.save(new User("admin", passwordEncoder.encode("12345")));
 		User usuario1 = userRepository.save(new User("miguel", passwordEncoder.encode("12345")));

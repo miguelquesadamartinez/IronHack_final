@@ -17,6 +17,7 @@ public class TransactionsService implements TransactionsServiceInterface {
 
     @Override
     public List<Transactions> getFraudTransactions() {
-        return null;
+        //return transactionsRepository.findAll();
+        return transactionsRepository.getFraudTransactions();
     }
 }
