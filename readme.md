@@ -10,15 +10,6 @@ admin: admin
 pass: 12345
 
 
-http://localhost:8080/transfer-to-account
-
-{
-"idOrigin": 14,
-"amount": 100,
-"idHolderUno": 5,
-"idHolderDos": 16
-}
-
 [CreditCard Creation](http://localhost:8080/create-credit-card)
 
 {
@@ -33,7 +24,16 @@ http://localhost:8080/transfer-to-account
 "interestRate": 0.2
 }
 
-http://localhost:8080//create-third-pàrty
+http://localhost:8080/transfer-to-account
+
+{
+"idOrigin": 14,
+"amount": 100,
+"idHolderUno": 5,
+"idHolderDos": 16
+}
+
+http://localhost:8080/create-third-pàrty
 
 {
 "hashedKey": "aaaaa",
@@ -48,6 +48,7 @@ http://localhost:8080/pay-third-party
 }
 
 http://localhost:8080/get-fraud
+
 Devuelve cuentas con mas de dos transaccion por dia
 
 * More at: http://localhost:8080/swagger-ui
