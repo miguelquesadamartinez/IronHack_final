@@ -30,14 +30,43 @@ public class SecurityConfiguration {
         return authConf.getAuthenticationManager();
     }
 
+    /*
+
+/
+/
+/{id}
+
+    * */
 
     @Bean
     protected SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.httpBasic();
 
         httpSecurity.authorizeRequests()
-                //.mvcMatchers(HttpMethod.GET, "/get-account-balance/**").hasAnyRole("ADMIN")
-                .mvcMatchers(HttpMethod.POST,"/transfer-to-account").hasRole("ADMIN")
+                .mvcMatchers(HttpMethod.POST,"/create-third-pàrty").hasRole("ADMIN")
+                .mvcMatchers(HttpMethod.POST,"/pay-third-party").hasAnyRole("ADMIN", "USER")
+                .mvcMatchers(HttpMethod.POST,"/transfer-to-third-party").hasRole("ADMIN")
+
+                .mvcMatchers(HttpMethod.POST,"/transfer-to-account").hasAnyRole("ADMIN", "USER")
+                .mvcMatchers(HttpMethod.GET,"/get-all-accounts").hasRole("ADMIN")
+                .mvcMatchers(HttpMethod.GET, "/get-account-balance").hasAnyRole("ADMIN", "USER")
+
+                .mvcMatchers(HttpMethod.POST,"/create-student").hasRole("ADMIN")
+                .mvcMatchers(HttpMethod.POST,"/create-savings").hasRole("ADMIN")
+                .mvcMatchers(HttpMethod.POST,"/create-credit-card").hasRole("ADMIN")
+                .mvcMatchers(HttpMethod.POST,"/create-checking").hasRole("ADMIN")
+
+                .mvcMatchers(HttpMethod.POST,"/create-address").hasRole("ADMIN")
+                .mvcMatchers(HttpMethod.POST,"/GET-addresses").hasRole("ADMIN")
+                .mvcMatchers(HttpMethod.POST,"/get-address/**").hasRole("ADMIN")
+
+                .mvcMatchers(HttpMethod.POST,"/create-account-holder").hasRole("ADMIN")
+                .mvcMatchers(HttpMethod.POST,"/get-accounts").hasRole("ADMIN")
+                .mvcMatchers(HttpMethod.POST,"/get-account-holder/**").hasRole("ADMIN")
+
+                .mvcMatchers(HttpMethod.GET,"/users").denyAll()
+
+
                 .anyRequest().permitAll();
 
         httpSecurity.csrf().disable();

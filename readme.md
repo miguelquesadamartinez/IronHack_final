@@ -1,10 +1,11 @@
 
-#Testing
+# Testing
 
 user: miguel
-pass: 1804
+pass: 12345
 
 http://localhost:8080/transfer-to-account
+
 {
 "idOrigin": 14,
 "amount": 100,
@@ -26,8 +27,18 @@ http://localhost:8080/create-credit-card
 "interestRate": 0.2
 }
 
+http://localhost:8080//create-third-pàrty
+
+{
+"hashedKey": "aaaaa",
+"name": "Miguel"
+}
+
 http://localhost:8080/pay-third-party
-hashedKey header -> aaaaaaa
+
+"hashedKey" header -> aaaaaaa
 {
 "amount": 150
 }
+
+More at: http://localhost:8080/swagger-ui

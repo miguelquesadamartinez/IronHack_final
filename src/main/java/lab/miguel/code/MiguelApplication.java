@@ -67,7 +67,9 @@ public class MiguelApplication implements CommandLineRunner {
 
 		ThirdParty thirdParty1 = thirdPartyService.createThirdParty(new ThirdPartyDTO( "aaaaaaa", "Miguel", 100l));
 
+		User admin = userRepository.save(new User("admin", passwordEncoder.encode("12345")));
 		User usuario1 = userRepository.save(new User("miguel", passwordEncoder.encode("12345")));
-		roleRepository.save(new Role("ADMIN", usuario1));
+		roleRepository.save(new Role("USER", usuario1));
+		roleRepository.save(new Role("ADMIN", admin));
 	}
 }

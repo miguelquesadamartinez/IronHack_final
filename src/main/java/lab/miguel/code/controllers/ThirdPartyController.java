@@ -28,7 +28,7 @@ public class ThirdPartyController {
         return thirdPartyService.createThirdParty(thirdPartyDTO);
     }
 
-    @PostMapping("pay-third-party")
+    @PostMapping("/pay-third-party")
     public ThirdParty payThirdPartyDos(@RequestHeader(name = "hashedKey", required = true) String hashedKey,
                                                 @RequestBody ThirdPartyDTO thirdPartyDTO){
 
