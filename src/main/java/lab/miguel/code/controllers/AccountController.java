@@ -18,7 +18,7 @@ public class AccountController implements AccountControllerInterface {
 
     @GetMapping("/get-account-balance")
     @ResponseStatus(HttpStatus.OK)
-    public BalanceDTO getBalance(@RequestParam Long id) {
+    public BalanceDTO getBalance(@RequestBody Long id) {
         return accountService.getBalance(id);
     }
 
