@@ -1,8 +1,14 @@
 
 # Testing
 
+### Login Credentials
+
 user: miguel
 pass: 12345
+
+admin: admin
+pass: 12345
+
 
 http://localhost:8080/transfer-to-account
 
@@ -13,7 +19,7 @@ http://localhost:8080/transfer-to-account
 "idHolderDos": 16
 }
 
-http://localhost:8080/create-credit-card
+[CreditCard Creation](http://localhost:8080/create-credit-card)
 
 {
 "balance": 100,
@@ -41,4 +47,4 @@ http://localhost:8080/pay-third-party
 "amount": 150
 }
 
-More at: http://localhost:8080/swagger-ui
+* More at: http://localhost:8080/swagger-ui
