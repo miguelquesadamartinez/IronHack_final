@@ -4,6 +4,7 @@ import lab.miguel.code.controllers.DTOs.*;
 import lab.miguel.code.entity.*;
 import lab.miguel.code.enums.Status;
 import lab.miguel.code.repositories.RoleRepository;
+import lab.miguel.code.repositories.TransactionsRepository;
 import lab.miguel.code.repositories.UserRepository;
 import lab.miguel.code.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @SpringBootApplication
@@ -34,6 +36,8 @@ public class MiguelApplication implements CommandLineRunner {
 	UserRepository userRepository;
 	@Autowired
 	RoleRepository roleRepository;
+	@Autowired
+	TransactionsRepository transactionsRepository;
 
 	@Autowired
 	PasswordEncoder passwordEncoder;
@@ -66,6 +70,9 @@ public class MiguelApplication implements CommandLineRunner {
 		StudentChecking student1 = studentService.createStudent(new CreateStudentDTO(3500, 11l, 12l, LocalDate.now(), Status.ACTIVE, "12345", LocalDate.now()));
 
 		ThirdParty thirdParty1 = thirdPartyService.createThirdParty(new ThirdPartyDTO( "aaaaaaa", "Miguel", 100l));
+
+		Transactions trans1 = transactionsRepository.save(new Transactions(13l, LocalDate.now(), new Money(BigDecimal.valueOf(110))));
+		Transactions trans2 = transactionsRepository.save(new Transactions(13l, LocalDate.now(), new Money(BigDecimal.valueOf(110))));
 
 		User admin = userRepository.save(new User("admin", passwordEncoder.encode("12345")));
 		User usuario1 = userRepository.save(new User("miguel", passwordEncoder.encode("12345")));

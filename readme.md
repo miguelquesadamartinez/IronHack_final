@@ -47,4 +47,7 @@ http://localhost:8080/pay-third-party
 "amount": 150
 }
 
+http://localhost:8080/get-fraud
+
+
 * More at: http://localhost:8080/swagger-ui

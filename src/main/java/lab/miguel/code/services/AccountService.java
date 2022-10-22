@@ -3,17 +3,18 @@ package lab.miguel.code.services;
 import lab.miguel.code.controllers.DTOs.AccountIdDTO;
 import lab.miguel.code.controllers.DTOs.BalanceDTO;
 import lab.miguel.code.controllers.DTOs.TransferDTO;
-import lab.miguel.code.entity.Account;
-import lab.miguel.code.entity.AccountHolders;
-import lab.miguel.code.entity.Checking;
+import lab.miguel.code.entity.*;
 import lab.miguel.code.repositories.AccountHolderRepository;
 import lab.miguel.code.repositories.AccountRepository;
+import lab.miguel.code.repositories.TransactionsRepository;
 import lab.miguel.code.services.interfaces.AccountServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,6 +24,8 @@ public class AccountService implements AccountServiceInterface {
     AccountRepository accountRepository;
     @Autowired
     AccountHolderRepository accountHolderRepository;
+    @Autowired
+    TransactionsRepository transactionsRepository;
 
     @Override
     public BalanceDTO getBalance(Long id) {
@@ -79,6 +82,10 @@ public class AccountService implements AccountServiceInterface {
 
         originAccount.decreaseAmoutn(transferDTO.getAmount());
         accountRepository.save(originAccount);
+
+        // TODO: Guardar transferencia
+
+        transactionsRepository.save(new Transactions(13l, LocalDate.now(), new Money(BigDecimal.valueOf(110))));
 
         System.out.println("\n\nSale en Service - transferToAccount\n\n");
     }

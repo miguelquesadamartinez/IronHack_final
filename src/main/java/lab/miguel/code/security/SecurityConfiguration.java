@@ -43,6 +43,7 @@ public class SecurityConfiguration {
         httpSecurity.httpBasic();
 
         httpSecurity.authorizeRequests()
+                /*
                 .mvcMatchers(HttpMethod.POST,"/create-third-pàrty").hasRole("ADMIN")
                 .mvcMatchers(HttpMethod.POST,"/pay-third-party").hasAnyRole("ADMIN", "USER")
                 .mvcMatchers(HttpMethod.POST,"/transfer-to-third-party").hasRole("ADMIN")
@@ -66,7 +67,7 @@ public class SecurityConfiguration {
 
                 .mvcMatchers(HttpMethod.GET,"/users").denyAll()
 
-
+*/
                 .anyRequest().permitAll();
 
         httpSecurity.csrf().disable();
