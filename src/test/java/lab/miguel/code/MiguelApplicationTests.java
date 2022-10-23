@@ -3,6 +3,7 @@ package lab.miguel.code;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.databind.json.JsonMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import lab.miguel.code.controllers.DTOs.*;
 import lab.miguel.code.entity.*;
@@ -66,7 +67,10 @@ class MiguelApplicationTests {
 	private WebApplicationContext webApplicationContext;
 
 	private MockMvc mockMvc;
-	private final ObjectMapper objectMapper = new ObjectMapper();
+	//private final ObjectMapper objectMapper = new ObjectMapper();
+	private final ObjectMapper objectMapper = JsonMapper.builder()
+			.addModule(new JavaTimeModule())
+			.build();
 
 
 	@BeforeEach
@@ -113,6 +117,38 @@ class MiguelApplicationTests {
 		Long id = node.asLong();
 
 		Assertions.assertTrue(checkingRepository.findById(id).isPresent());
+	}
+
+	@Test
+	void mock_create_credit_card() throws Exception{
+		Address addr1 = addressRepository.save(new Address("Velia, 81"));
+		Address addr2 = addressRepository.save(new Address("Velia, 69"));
+		AccountHolders acc1 = accountHolderService.createAccountHolder(new CreateAccountHolderDTO("Miguel", "1975-04-18", addr1.getId(), addr2.getId()));
+		AccountHolders acc2 = accountHolderService.createAccountHolder(new CreateAccountHolderDTO("Pepe", "2000-02-01", addr1.getId(), addr2.getId()));
+
+		CreateCreditCardDTO dto = new CreateCreditCardDTO(500, acc1.getId(), acc2.getId(), LocalDate.now(), Status.ACTIVE, "12345",LocalDate.now(),  1000, 0.02);
+
+		String body = objectMapper.writeValueAsString(dto);
+
+		MvcResult mvcResult = mockMvc.perform(post("/create-credit-card").content(body).contentType(MediaType.APPLICATION_JSON)).andExpect(status().isCreated()).andReturn();
+
+		ObjectMapper mapper = new ObjectMapper();
+		JsonNode tree = mapper.readTree(mvcResult.getResponse().getContentAsString());
+		JsonNode node = tree.get("id");
+		Long id = node.asLong();
+
+		Assertions.assertTrue(creditcardRepository.findById(id).isPresent());
+	}
+
+	@Test
+	void mock_create_credit_card_ko() throws Exception{
+		CreateCreditCardDTO dto = new CreateCreditCardDTO(500, 5l, 6l, LocalDate.now(), Status.ACTIVE, "12345",LocalDate.now(),  1000, 10);
+
+		String body = objectMapper.writeValueAsString(dto);
+
+		MvcResult mvcResult = mockMvc.perform(post("/create-credit-card").content(body).
+				contentType(MediaType.APPLICATION_JSON)).andExpect(status().isNotAcceptable()).andReturn();
+
 	}
 	@Test
 	void create_address() {

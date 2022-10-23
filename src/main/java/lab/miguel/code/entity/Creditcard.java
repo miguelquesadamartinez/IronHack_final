@@ -28,7 +28,7 @@ public class Creditcard extends Account {
         if ( interestRate >= 0.1 && interestRate <= 0.2 ) {
             this.interestRate = interestRate;
         } else
-            throw new ResponseStatusException(HttpStatus.CONFLICT);
+            throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE);
 
 
         if (creditLimit >= 100 && creditLimit <= 100000) {

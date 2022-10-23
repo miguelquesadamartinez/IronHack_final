@@ -42,16 +42,12 @@ public class AccountService implements AccountServiceInterface {
     public void transferToAccount(TransferDTO transferDTO) {
 
         if(transferDTO.getAmount() == 0){
-            throw new RuntimeException("No amount enough");
+            throw new RuntimeException("Not amount enough");
         }
-
-        // TODO: Esto ??
 
         Account originAccount = accountRepository.findById(transferDTO.getIdOrigin()).get();
         AccountHolders acc1 = null;
         AccountHolders acc2 = null;
-
-        System.out.println("getIdHolderUno: " + transferDTO.getIdHolderUno());
 
         if (!accountHolderRepository.findById(transferDTO.getIdHolderUno()).isPresent()
             &&
@@ -83,11 +79,8 @@ public class AccountService implements AccountServiceInterface {
         originAccount.decreaseAmoutn(transferDTO.getAmount());
         accountRepository.save(originAccount);
 
-        // TODO: Guardar transferencia
-
         transactionsRepository.save(new Transactions(13l, LocalDate.now(), new Money(BigDecimal.valueOf(110))));
 
-        System.out.println("\n\nSale en Service - transferToAccount\n\n");
     }
 
     public List<Account> findAll (){
