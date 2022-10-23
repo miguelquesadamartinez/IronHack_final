@@ -2,7 +2,6 @@ package lab.miguel.code;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.json.JsonMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import lab.miguel.code.controllers.DTOs.*;
@@ -10,7 +9,6 @@ import lab.miguel.code.entity.*;
 import lab.miguel.code.enums.Status;
 import lab.miguel.code.repositories.*;
 import lab.miguel.code.services.*;
-import net.bytebuddy.asm.Advice;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -22,8 +20,6 @@ import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
-import javax.swing.text.html.Option;
-import java.awt.dnd.DragSourceMotionListener;
 import java.time.LocalDate;
 import java.util.Optional;
 
