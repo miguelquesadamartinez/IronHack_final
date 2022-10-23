@@ -29,7 +29,7 @@ public class SavingsService implements SavingsServiceInterface {
         AccountHolders accHold1 = null;
         AccountHolders accHold2 = null;
 
-        if (!accountHolderRepository.findById(savingsDTO.getPrimaryOwner()).isPresent())
+        if(savingsDTO.getPrimaryOwner() == null)
             throw new RuntimeException("No hay a owner");
         else
             accHold1 = accountHolderRepository.findById(savingsDTO.getPrimaryOwner()).get();

@@ -26,7 +26,7 @@ public class CreditcardService implements CreditcardServiceInterface {
         AccountHolders accHold1 = null;
         AccountHolders accHold2 = null;
 
-        if (!accountHolderRepository.findById(createCreditCardDTO.getPrimaryOwner()).isPresent())
+        if(createCreditCardDTO.getPrimaryOwner() == null)
             throw new RuntimeException("No hay a owner");
         else
             accHold1 = accountHolderRepository.findById(createCreditCardDTO.getPrimaryOwner()).get();

@@ -26,7 +26,6 @@ public class AccountController implements AccountControllerInterface {
     @PostMapping("/transfer-to-account")
     @ResponseStatus(HttpStatus.OK)
     public void transferToAccount(@RequestBody TransferDTO transferDTO ){
-        System.out.println("\n\nEntra en Controller\n\n");
         accountService.transferToAccount(transferDTO);
     }
 

@@ -30,7 +30,7 @@ public class StudentService implements StudentServiceInterface {
         AccountHolders accHold1 = null;
         AccountHolders accHold2 = null;
 
-        if (!accountHolderRepository.findById(createStudentDTO.getPrimaryOwner()).isPresent())
+        if(createStudentDTO.getPrimaryOwner() == null)
             throw new RuntimeException("No hay a owner");
         else
             accHold1 = accountHolderRepository.findById(createStudentDTO.getPrimaryOwner()).get();

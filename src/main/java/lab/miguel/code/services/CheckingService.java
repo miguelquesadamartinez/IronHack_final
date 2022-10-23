@@ -35,10 +35,7 @@ public class CheckingService implements CheckingServiceInterface {
         //accHold1 = accountHolderRepository.findById(checkingDTO.getPrimaryOwner()).get();
         //accHold2 = accountHolderRepository.findById(checkingDTO.getSecondaryOwner()).get();
 
-        System.err.println("ENTRA: " + checkingDTO.getPrimaryOwner());
-
-
-        if(!accountHolderRepository.findById(checkingDTO.getPrimaryOwner()).isPresent())
+        if(checkingDTO.getPrimaryOwner() == null)
             throw new RuntimeException("Falta owner uno");
          else
             accHold1 = accountHolderRepository.findById(checkingDTO.getPrimaryOwner()).get();
