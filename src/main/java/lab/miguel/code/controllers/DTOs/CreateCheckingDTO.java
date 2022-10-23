@@ -19,7 +19,7 @@ public class CreateCheckingDTO {
     private double monthlyMaintenanceFee;
     private double minimumBalance;
 
-    public CreateCheckingDTO(double balance, Long primaryOwner, Long secondaryOwner, LocalDate creationDate, Status status, String secretKey, LocalDate dateLastAction, double monthlyMaintenanceFee, double minimumBalance) {
+    public CreateCheckingDTO(Double balance, Long primaryOwner, Long secondaryOwner, LocalDate creationDate, Status status, String secretKey, LocalDate dateLastAction, double monthlyMaintenanceFee, double minimumBalance) {
         this.balance = balance;
         this.primaryOwner = primaryOwner;
         this.secondaryOwner = secondaryOwner;
@@ -29,35 +29,30 @@ public class CreateCheckingDTO {
         this.dateLastAction = dateLastAction;
         this.monthlyMaintenanceFee = monthlyMaintenanceFee;
         this.minimumBalance = minimumBalance;
-        System.err.println("Constructor CreateCheckingDTO");
-        System.err.println(this.primaryOwner);
     }
 
-    public CreateCheckingDTO() {
-    }
-
-    public double getBalance() {
+    public Double getBalance() {
         return balance;
     }
 
-    public void setBalance(double balance) {
+    public void setBalance(Double balance) {
         this.balance = balance;
     }
 
     public Long getPrimaryOwner() {
-        return this.primaryOwner;
+        return primaryOwner;
     }
 
     public void setPrimaryOwner(Long primaryOwner) {
-        primaryOwner = primaryOwner;
+        this.primaryOwner = primaryOwner;
     }
 
     public Long getSecondaryOwner() {
-        return this.secondaryOwner;
+        return secondaryOwner;
     }
 
     public void setSecondaryOwner(Long secondaryOwner) {
-        secondaryOwner = secondaryOwner;
+        this.secondaryOwner = secondaryOwner;
     }
 
     public LocalDate getCreationDate() {

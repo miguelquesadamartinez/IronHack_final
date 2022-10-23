@@ -108,7 +108,7 @@ class MiguelApplicationTests {
 		Address addr2 = addressRepository.save(new Address("Velia, 69"));
 		AccountHolders acc1 = accountHolderService.createAccountHolder(new CreateAccountHolderDTO("Miguel", "1975-04-18", addr1.getId(), addr2.getId()));
 		AccountHolders acc2 = accountHolderService.createAccountHolder(new CreateAccountHolderDTO("Pepe", "2000-02-01", addr1.getId(), addr2.getId()));
-		CreateCheckingDTO dto = new CreateCheckingDTO(500, acc1.getId(), acc2.getId(), LocalDate.now(), Status.ACTIVE, "12345",LocalDate.now(),  10, 100);
+		CreateCheckingDTO dto = new CreateCheckingDTO(500d, acc1.getId(), acc2.getId(), LocalDate.now(), Status.ACTIVE, "12345",LocalDate.now(),  10, 100);
 
 		String body = objectMapper.writeValueAsString(dto);
 
@@ -178,7 +178,7 @@ class MiguelApplicationTests {
 		AccountHolders acc1 = accountHolderService.createAccountHolder(new CreateAccountHolderDTO("Miguel", "1975-04-18", addr1.getId(), addr2.getId()));
 		AccountHolders acc2 = accountHolderService.createAccountHolder(new CreateAccountHolderDTO("Pepe", "2000-02-01", addr1.getId(), addr2.getId()));
 
-		Checking checking = checkingService.createChecking(new CreateCheckingDTO(500, acc1.getId(), acc2.getId(),LocalDate.now(), Status.ACTIVE, "12345",LocalDate.now(), 10, 100));
+		Checking checking = checkingService.createChecking(new CreateCheckingDTO(500d, acc1.getId(), acc2.getId(),LocalDate.now(), Status.ACTIVE, "12345",LocalDate.now(), 10, 100));
 		Optional<Checking> chkOpt = checkingRepository.findById(checking.getId());
 		Assertions.assertTrue(chkOpt.isPresent());
 	}
