@@ -11,7 +11,9 @@ import lab.miguel.code.repositories.CheckingRepository;
 import lab.miguel.code.repositories.StudentRepository;
 import lab.miguel.code.services.interfaces.CheckingServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import javax.persistence.AttributeOverride;
 import java.math.BigDecimal;
@@ -32,9 +34,6 @@ public class CheckingService implements CheckingServiceInterface {
         AccountHolders accHold1 = null;
         AccountHolders accHold2 = null;
 
-        //accHold1 = accountHolderRepository.findById(checkingDTO.getPrimaryOwner()).get();
-        //accHold2 = accountHolderRepository.findById(checkingDTO.getSecondaryOwner()).get();
-
         if(checkingDTO.getPrimaryOwner() == null)
             throw new RuntimeException("Falta owner uno");
          else
@@ -42,7 +41,7 @@ public class CheckingService implements CheckingServiceInterface {
 
 
         if (ChronoUnit.YEARS.between(LocalDate.parse(accHold1.getDateOFBirth()), LocalDate.now()) < 23 ){
-            throw new RuntimeException("Es muy joven");
+            throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE);
         }
 
         if (checkingDTO.getSecondaryOwner() != null) {

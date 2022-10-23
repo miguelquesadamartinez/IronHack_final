@@ -151,6 +151,19 @@ class MiguelApplicationTests {
 
 	}
 	@Test
+	void mock_create_checking_age_ko() throws Exception{
+		Address addr1 = addressRepository.save(new Address("Velia, 81"));
+		Address addr2 = addressRepository.save(new Address("Velia, 69"));
+		//AccountHolders acc1 = accountHolderService.createAccountHolder(new CreateAccountHolderDTO("Miguel", "1975-04-18", addr1.getId(), addr2.getId()));
+		AccountHolders acc2 = accountHolderService.createAccountHolder(new CreateAccountHolderDTO("Pepe", "2000-02-01", addr1.getId(), addr2.getId()));
+		CreateCheckingDTO dto = new CreateCheckingDTO(500d, acc2.getId(), null, LocalDate.now(), Status.ACTIVE, "12345",LocalDate.now(),  10, 100);
+
+		String body = objectMapper.writeValueAsString(dto);
+
+		MvcResult mvcResult = mockMvc.perform(post("/create-checking").content(body).
+				contentType(MediaType.APPLICATION_JSON)).andExpect(status().isNotAcceptable()).andReturn();
+	}
+	@Test
 	void create_address() {
 		Address address = addressRepository.save(new Address("Velia, 81"));
 		Optional<Address> addrOpt = addressRepository.findById(address.getId());
