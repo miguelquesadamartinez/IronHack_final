@@ -27,8 +27,19 @@ public class StudentService implements StudentServiceInterface {
     public StudentChecking createStudent(CreateStudentDTO createStudentDTO) {
 
 
-        AccountHolders accHold1 = accountHolderRepository.findById(createStudentDTO.getPrimaryOwner()).get();
-        AccountHolders accHold2 = accountHolderRepository.findById(createStudentDTO.getSecondaryOwner()).get();
+        AccountHolders accHold1 = null;
+        AccountHolders accHold2 = null;
+
+        if (!accountHolderRepository.findById(createStudentDTO.getPrimaryOwner()).isPresent())
+            throw new RuntimeException("No hay a owner");
+        else
+            accHold1 = accountHolderRepository.findById(createStudentDTO.getPrimaryOwner()).get();
+
+        if (createStudentDTO.getSecondaryOwner() != null) {
+            if (accountHolderRepository.findById(createStudentDTO.getSecondaryOwner()).isPresent()) {
+                accHold2 = accountHolderRepository.findById(createStudentDTO.getSecondaryOwner()).get();
+            }
+        }
 
         Money balance = new Money(new BigDecimal(createStudentDTO.getBalance()));
 

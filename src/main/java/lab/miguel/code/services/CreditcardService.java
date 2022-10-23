@@ -26,29 +26,20 @@ public class CreditcardService implements CreditcardServiceInterface {
         AccountHolders accHold1 = null;
         AccountHolders accHold2 = null;
 
-        if (!accountHolderRepository.findById(createCreditCardDTO.getPrimaryOwner()).isPresent()
-                &&
-                !accountHolderRepository.findById(createCreditCardDTO.getSecondaryOwner()).isPresent())
+        if (!accountHolderRepository.findById(createCreditCardDTO.getPrimaryOwner()).isPresent())
             throw new RuntimeException("No hay a owner");
+        else
+            accHold1 = accountHolderRepository.findById(createCreditCardDTO.getPrimaryOwner()).get();
 
-        System.err.println("ENTRo createCreditcard");
-
-        accHold1 = accountHolderRepository.findById(createCreditCardDTO.getPrimaryOwner()).get();
-
-        System.err.println("PASO 1");
-
-        if(accountHolderRepository.findById(createCreditCardDTO.getSecondaryOwner()).isPresent()) {
-            System.err.println("PASO 2");
-            accHold2 = accountHolderRepository.findById(createCreditCardDTO.getSecondaryOwner()).get();
+        if (createCreditCardDTO.getSecondaryOwner() != null) {
+            if (accountHolderRepository.findById(createCreditCardDTO.getSecondaryOwner()).isPresent()) {
+                accHold2 = accountHolderRepository.findById(createCreditCardDTO.getSecondaryOwner()).get();
+            }
         }
 
-
         // TODO: Tal vez
-
         Money balance = new Money(new BigDecimal(createCreditCardDTO.getBalance()));
-
         Creditcard tempCreditCard = new Creditcard(balance, accHold1, accHold2, LocalDate.now(), Status.ACTIVE, createCreditCardDTO.getSecretKey(), LocalDate.now(), createCreditCardDTO.getCreditLimit(), createCreditCardDTO.getInterestRate());
-
         return creditcardRepository.save(tempCreditCard);
     }
 }

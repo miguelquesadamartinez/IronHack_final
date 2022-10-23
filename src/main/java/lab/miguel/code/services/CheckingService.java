@@ -32,32 +32,27 @@ public class CheckingService implements CheckingServiceInterface {
         AccountHolders accHold1 = null;
         AccountHolders accHold2 = null;
 
-        System.err.println("ANTES DE EL FIND");
-        System.err.println(checkingDTO.getPrimaryOwner());
-        System.err.println(checkingDTO.getSecondaryOwner());
-        System.err.println(checkingDTO.getSecretKey());
+        //accHold1 = accountHolderRepository.findById(checkingDTO.getPrimaryOwner()).get();
+        //accHold2 = accountHolderRepository.findById(checkingDTO.getSecondaryOwner()).get();
 
-        accHold1 = accountHolderRepository.findById(checkingDTO.getPrimaryOwner()).get();
-        accHold2 = accountHolderRepository.findById(checkingDTO.getSecondaryOwner()).get();
+        System.err.println("ENTRA: " + checkingDTO.getPrimaryOwner());
 
-        System.err.println("DESPUES DE EL FIND");
-        /*
-        if(!accountHolderRepository.findById(checkingDTO.getPrimaryOwner()).isPresent()){
+
+        if(!accountHolderRepository.findById(checkingDTO.getPrimaryOwner()).isPresent())
             throw new RuntimeException("Falta owner uno");
-        } else {
+         else
             accHold1 = accountHolderRepository.findById(checkingDTO.getPrimaryOwner()).get();
-        }
+
 
         if (ChronoUnit.YEARS.between(LocalDate.parse(accHold1.getDateOFBirth()), LocalDate.now()) < 23 ){
             throw new RuntimeException("Es muy joven");
         }
 
-        if(accountHolderRepository.findById(checkingDTO.getSecondaryOwner()).isPresent()){
-            accHold2 = accountHolderRepository.findById(checkingDTO.getSecondaryOwner()).get();
+        if (checkingDTO.getSecondaryOwner() != null) {
+            if (accountHolderRepository.findById(checkingDTO.getSecondaryOwner()).isPresent()) {
+                accHold2 = accountHolderRepository.findById(checkingDTO.getSecondaryOwner()).get();
+            }
         }
-
-
-*/
 
         Money balance = new Money(new BigDecimal(checkingDTO.getBalance()));
 

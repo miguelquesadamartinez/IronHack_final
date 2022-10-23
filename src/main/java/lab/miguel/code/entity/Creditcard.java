@@ -25,8 +25,6 @@ public class Creditcard extends Account {
     public Creditcard(Money balance, AccountHolders primaryOwner, AccountHolders secondaryOwner, LocalDate creationDate, Status status, String secretKey, LocalDate dateLastAction, double creditLimit, double interestRate) {
         super(balance, primaryOwner, secondaryOwner, creationDate, status, secretKey, dateLastAction);
 
-        System.err.println("Interest Rate: " + interestRate);
-
         if ( interestRate >= 0.1 && interestRate <= 0.2 ) {
             this.interestRate = interestRate;
         } else

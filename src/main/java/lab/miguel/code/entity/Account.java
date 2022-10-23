@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 import net.bytebuddy.asm.Advice;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -25,11 +26,12 @@ public abstract class Account {
     private static double PENALTY_FEE = 40;
 
     private Money balance;
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "primary_owner_id")
     private AccountHolders primaryOwner;
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "secondary_owner_id")
+    @Nullable
     private AccountHolders secondaryOwner;
 
     //private double penaltyFee;

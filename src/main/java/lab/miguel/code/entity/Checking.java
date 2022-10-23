@@ -11,7 +11,6 @@ import java.time.LocalDate;
 @Getter
 @Setter
 public class Checking extends Account{
-
     private double monthlyMaintenanceFee;
     private double minimumBalance;
 

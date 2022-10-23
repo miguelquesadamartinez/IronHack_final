@@ -26,8 +26,19 @@ public class SavingsService implements SavingsServiceInterface {
     @Override
     public Savings createSavings(CreateSavingsDTO savingsDTO) {
 
-        AccountHolders accHold1 = accountHolderRepository.findById(savingsDTO.getPrimaryOwner()).get();
-        AccountHolders accHold2 = accountHolderRepository.findById(savingsDTO.getSecondaryOwner()).get();
+        AccountHolders accHold1 = null;
+        AccountHolders accHold2 = null;
+
+        if (!accountHolderRepository.findById(savingsDTO.getPrimaryOwner()).isPresent())
+            throw new RuntimeException("No hay a owner");
+        else
+            accHold1 = accountHolderRepository.findById(savingsDTO.getPrimaryOwner()).get();
+
+        if (savingsDTO.getSecondaryOwner() != null) {
+            if (accountHolderRepository.findById(savingsDTO.getSecondaryOwner()).isPresent()) {
+                accHold2 = accountHolderRepository.findById(savingsDTO.getSecondaryOwner()).get();
+            }
+        }
 
         Money balance = new Money(new BigDecimal(savingsDTO.getBalance()));
 
