@@ -34,9 +34,10 @@ public class ThirdPartyController {
 
         return thirdPartyService.transferToThirdParty(hashedKey, thirdPartyDTO.getAmount());
     }
+    /*
     @PostMapping("/transfer-to-third-party")
     public ThirdParty transeferToThirdParty(@RequestBody ThirdPartyDTO thirdPartyDTO){
         return thirdPartyService.transferToThirdParty(thirdPartyDTO.getHashedKey(), thirdPartyDTO.getAmount());
     }
-
+    */
 }
