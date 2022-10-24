@@ -79,7 +79,7 @@ public class AccountService implements AccountServiceInterface {
         originAccount.decreaseAmoutn(transferDTO.getAmount());
         accountRepository.save(originAccount);
 
-        transactionsRepository.save(new Transactions(13l, LocalDate.now(), new Money(BigDecimal.valueOf(110))));
+        transactionsRepository.save(new Transactions(transferDTO.getIdOrigin(), LocalDate.now(), new Money(BigDecimal.valueOf(110))));
 
     }
 
